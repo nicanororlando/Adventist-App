@@ -1,0 +1,71 @@
+/* NAVBAR */
+header {
+  background-color: #003c71;
+  padding: 0;
+  margin: 0;
+}
+#navbar {
+  padding-top: 0;
+}
+.nav-list {
+  position: sticky;
+  top: 0;
+  height: 10vh;
+  font-size: 15px;
+  font-weight: 400;
+}
+.svg-logo {
+  display: inline;
+  width: 40px;
+  height: 40px;
+}
+.logo {
+  fill: #fff;
+}
+.title {
+  font-size: 12px;
+}
+.navbar-collapse {
+  flex-grow: 0 !important;
+}
+.nav-item {
+  position: relative;
+  padding-bottom: 5px;
+  cursor: pointer;
+  user-select: none;
+  text-transform: uppercase;
+}
+.nav-item::after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 2px;
+  background-color: #f2ce1b;
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  -webkit-transition: all 0.4s;
+  transition: width 0.4s;
+}
+.nav-item:hover.nav-item::after {
+  width: 70%;
+}
+.dropdown:hover .dropdown-menu {
+  display: block;
+  margin-top: 15.5px; /* remove the gap so it doesn't close */
+}
+a img {
+  background-color: #003c71;
+}
+
+/* CLASES */
+.px-200 {
+  padding-left: 200px;
+  padding-right: 200px;
+}
+
+.show {
+  background-color: #003c71;
+}
