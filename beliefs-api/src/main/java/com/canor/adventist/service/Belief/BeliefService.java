@@ -40,9 +40,9 @@ public class BeliefService implements IBeliefService {
     );
 
     if (optionalBeliefTitle.isPresent()) throw new Exceptions(
-      Exceptions.BeliefTitleAlreadyExists()
+      Exceptions.TitleAlreadyExists("Belief")
     ); else if (optionalBeliefId.isPresent()) throw new Exceptions(
-      Exceptions.BeliefIdAlreadyExists()
+      Exceptions.IdAlreadyExists("Belief")
     ); else beliefRepository.save(belief);
   }
 
@@ -88,7 +88,7 @@ public class BeliefService implements IBeliefService {
 
       beliefRepository.save(belief);
     } else {
-      throw new Exceptions(Exceptions.BeliefNotFoundException(id));
+      throw new Exceptions(Exceptions.NotFoundException("Belief", id));
     }
   }
 
@@ -119,20 +119,10 @@ public class BeliefService implements IBeliefService {
       newBelief.setImage(
         belief.getImage() != null ? belief.getImage() : newBelief.getImage()
       );
-      newBelief.setSubtitle(
-        belief.getSubtitle() != null
-          ? belief.getSubtitle()
-          : newBelief.getSubtitle()
-      );
-      newBelief.setMoreInfo(
-        belief.getMoreInfo() != null
-          ? belief.getMoreInfo()
-          : newBelief.getMoreInfo()
-      );
 
       beliefRepository.save(newBelief);
     } else {
-      throw new Exceptions(Exceptions.BeliefNotFoundException(id));
+      throw new Exceptions(Exceptions.NotFoundException("Belief", id));
     }
   }
 

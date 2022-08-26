@@ -6,19 +6,19 @@ public class Exceptions extends Exception {
     super(message);
   }
 
-  public static String BeliefNotFoundException(Integer id) {
-    return "Belief with id '" + id + "' not found";
+  public static String NotFoundException(String model, Integer id) {
+    return model + " with id '" + id + "' not found";
   }
 
-  public static String BeliefTitleNotFoundException(String title) {
-    return "Belief with title '" + title + "' not found";
+  public static String TitleNotFoundException(String model, String title) {
+    return model + " with title '" + title + "' not found";
   }
 
-  public static String BeliefTitleAlreadyExists() {
-    return "Belief with given title already exists";
+  public static String TitleAlreadyExists(String model) {
+    return model + " with given title already exists";
   }
 
-  public static String BeliefIdAlreadyExists() {
-    return "Belief with given id already exists";
+  public static String IdAlreadyExists(String model) {
+    return model + " with given id already exists";
   }
 }

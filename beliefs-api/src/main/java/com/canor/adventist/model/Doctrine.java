@@ -8,11 +8,11 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(value = "belief")
+@Document(value = "doctrine")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Belief {
+public class Doctrine {
 
   @Id
   private Integer id;
@@ -22,6 +22,4 @@ public class Belief {
 
   @NotEmpty(message = "Description cannot be null")
   private List<String> description;
-
-  private String image;
 }

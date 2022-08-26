@@ -1,14 +1,12 @@
 package com.canor.adventist.controller;
 
 import com.canor.adventist.exceptions.Exceptions;
-import com.canor.adventist.model.Belief;
-import com.canor.adventist.service.Belief.BeliefService;
+import com.canor.adventist.model.Doctrine;
+import com.canor.adventist.service.Doctrine.IDoctrineService;
 import java.util.List;
 import javax.validation.ConstraintViolationException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,24 +15,21 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
 @RestController
-@RequestMapping("/api/beliefs")
+@RequestMapping("/api/doctrines")
 @RequiredArgsConstructor
-public class BeliefController {
+public class DoctrineController {
 
-  private final BeliefService beliefService;
+  private final IDoctrineService doctrineService;
 
   @GetMapping("")
-  public ResponseEntity<List<Belief>> findAll() {
-    List<Belief> beliefs = beliefService.findAll();
+  public ResponseEntity<List<Doctrine>> findAll() {
+    List<Doctrine> Doctrines = doctrineService.findAll();
     return ResponseEntity
-      .status(beliefs.size() > 0 ? HttpStatus.OK : HttpStatus.NOT_FOUND)
-      .body(beliefs);
+      .status(Doctrines.size() > 0 ? HttpStatus.OK : HttpStatus.NOT_FOUND)
+      .body(Doctrines);
   }
 
   @GetMapping("/{id}")
@@ -42,19 +37,19 @@ public class BeliefController {
     try {
       return ResponseEntity
         .status(HttpStatus.OK)
-        .body(beliefService.findById(id).get());
+        .body(doctrineService.findById(id).get());
     } catch (Exception e) {
       return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
     }
   }
 
   @PostMapping("")
-  public ResponseEntity<?> save(@RequestBody Belief belief) {
+  public ResponseEntity<?> save(@RequestBody Doctrine doctrine) {
     try {
-      beliefService.save(belief);
+      doctrineService.save(doctrine);
       return ResponseEntity
         .status(HttpStatus.CREATED)
-        .body(beliefService.findById(belief.getId()));
+        .body(doctrineService.findById(doctrine.getId()));
     } catch (ConstraintViolationException e) {
       return ResponseEntity
         .status(HttpStatus.UNPROCESSABLE_ENTITY)
@@ -64,46 +59,16 @@ public class BeliefController {
     }
   }
 
-  @PostMapping("/file/{id}")
-  public ResponseEntity<?> uploadFile(
-    @PathVariable Integer id,
-    @RequestPart MultipartFile file
-  )
-    throws Exception {
-    try {
-      beliefService.saveFile(id, file);
-      return ResponseEntity
-        .status(HttpStatus.CREATED)
-        .body("\"image\"" + ": " + beliefService.findById(id).get().getImage());
-    } catch (Exception e) {
-      return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-    }
-  }
-
-  // Le indico que va a tener una extension.
-  @GetMapping("/file/{filename:.+}")
-  @ResponseStatus(code = HttpStatus.NOT_MODIFIED)
-  public ResponseEntity<Resource> getImage(@PathVariable String filename)
-    throws Exception {
-    Resource resource = (Resource) beliefService.uri(filename);
-    return ResponseEntity
-      .ok()
-      .contentType(MediaType.IMAGE_PNG)
-      .contentType(MediaType.IMAGE_JPEG)
-      .contentType(MediaType.IMAGE_GIF)
-      .body(resource);
-  }
-
   @PatchMapping("/{id}")
   public ResponseEntity<?> update(
     @PathVariable("id") Integer id,
-    @RequestBody Belief belief
+    @RequestBody Doctrine doctrine
   ) {
     try {
-      beliefService.update(id, belief);
+      doctrineService.update(id, doctrine);
       return ResponseEntity
         .status(HttpStatus.OK)
-        .body(beliefService.findById(id));
+        .body(doctrineService.findById(id));
     } catch (Exceptions e) {
       return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
     } catch (ConstraintViolationException e) {
@@ -116,7 +81,7 @@ public class BeliefController {
   @DeleteMapping("/{id}")
   public ResponseEntity<?> deleteById(@PathVariable Integer id) {
     try {
-      beliefService.deleteById(id);
+      doctrineService.deleteById(id);
       return ResponseEntity
         .status(HttpStatus.OK)
         .body("Succesfully deleted by id " + id);
@@ -125,11 +90,3 @@ public class BeliefController {
     }
   }
 }
-// // Para descargar archivos:
-// ResponseEntity
-//       .ok()
-// .header(
-//   HttpHeaders.CONTENT_DISPOSITION,
-//   "attachment; filename=\"" + resource.getFilename() + "\""
-// )
-// .body(resource);
