@@ -1,16 +1,16 @@
 /* NAVBAR */
 header {
+  position: sticky;
+  top: 0;
   background-color: #003c71;
   padding: 0;
   margin: 0;
+  z-index: 10;
 }
 #navbar {
   padding-top: 0;
 }
 .nav-list {
-  position: sticky;
-  top: 0;
-  height: 10vh;
   font-size: 15px;
   font-weight: 400;
 }
@@ -30,6 +30,7 @@ header {
 }
 .nav-item {
   position: relative;
+  font-size: 17px;
   padding-bottom: 5px;
   cursor: pointer;
   user-select: none;
@@ -68,4 +69,16 @@ a img {
 
 .show {
   background-color: #003c71;
+}
+
+@media screen and (min-width: 992px) {
+  .nav-list {
+    height: 13vh;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  #navbar {
+    width: 91.666667%;
+  }
 }

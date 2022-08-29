@@ -8,4 +8,6 @@ angular.module("app", [
   "beliefs",
   "topBar",
   "navBar",
+  "appFooter",
+  "beliefCard",
 ]);

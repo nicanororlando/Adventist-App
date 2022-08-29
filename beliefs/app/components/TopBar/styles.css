@@ -1,13 +1,12 @@
-/* TOPBAR */
 .topbar {
   background-color: #f2ce1b;
   list-style: none;
 }
-.social span {
+.social a {
   width: 30px;
   color: #003c71;
 }
-.social span:hover,
+.social a:hover,
 .btn-login:hover {
   color: #92ccff;
 }
@@ -20,4 +19,10 @@ div > a {
 }
 a > img {
   margin-bottom: 2px;
+}
+
+@media screen and (max-width: 576px) {
+  .cont {
+    width: 91.666667%;
+  }
 }

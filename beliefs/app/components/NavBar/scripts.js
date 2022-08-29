@@ -1,3 +1,3 @@
 angular.module("navBar", []).component("navBar", {
-  templateUrl: "./components/NavBar/navbar.html",
+  templateUrl: "./components/NavBar/index.html",
 });

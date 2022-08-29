@@ -1,3 +1,3 @@
 angular.module("topBar", []).component("topBar", {
-  templateUrl: "./components/TopBar/topbar.html",
+  templateUrl: "./components/TopBar/index.html",
 });
