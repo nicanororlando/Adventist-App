@@ -14,5 +14,7 @@ angular.module("beliefs").component("beliefs", {
         this.beliefs = [{ name: "Error!" + res.status }];
       }
     );
+
+    // this.beliefs = Belief.query();
   },
 });

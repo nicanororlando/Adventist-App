@@ -4,12 +4,12 @@ angular.module("core.belief").factory("Belief", [
   "$resource",
   function ($resource) {
     return $resource(
-      "phones/:phoneId.json",
+      "http://localhost:8080/api/beliefs",
       {},
       {
         query: {
           method: "GET",
-          params: { beliefId: "beliefs" },
+          // params: { beliefId: "beliefs" },
           isArray: true,
         },
       }

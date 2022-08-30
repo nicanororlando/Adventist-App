@@ -44,4 +44,7 @@ belief-card {
   .container-card {
     justify-content: center;
   }
+  .hide-xs {
+    display: none;
+  }
 }
