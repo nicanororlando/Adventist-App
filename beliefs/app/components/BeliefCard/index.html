@@ -4,7 +4,13 @@
   <h6 class="belief-title">{{$ctrl.belief.id}}. {{$ctrl.belief.title}}</h6>
   <div class="description m-auto">
     <img ng-src="{{$ctrl.belief.image}}" alt="{{$ctrl.belief-title}}" />
-    <p ng-repeat="p in $ctrl.belief.description">{{p}}</p>
-    <p>{{$ctrl.verses}}</p>
+    <p ng-hide="$last" ng-repeat="p in $ctrl.belief.description">{{p}}</p>
+    <p>
+      <span ng-repeat="ver in $ctrl.verses"
+        ><a href="https://biblia.com/bible/nkjv/{{ver}}" target="_blank"
+          >{{ver}}</a
+        ></span
+      >
+    </p>
   </div>
 </div>

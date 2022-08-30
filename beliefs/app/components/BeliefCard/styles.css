@@ -21,6 +21,14 @@
   padding: 0 10px;
 }
 
+.description span {
+  padding-right: 8px;
+}
+
+.description a {
+  color: #003c71;
+}
+
 .description:hover {
   box-shadow: 0 15px 30px rgb(0 0 0 / 10%);
   -webkit-transition: all 0.6s;

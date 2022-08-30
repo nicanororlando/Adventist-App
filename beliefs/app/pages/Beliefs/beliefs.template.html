@@ -1,9 +1,29 @@
-<h3>{{$ctrl.welcome}}</h3>
+<header class="belief-header d-sm-none d-md-block">
+  <div class="container col-lg-8 col-md-10 col-sm-11">
+    <figcaption>
+      <h1>Creencias</h1>
+      <em
+        ><p>
+          Los adventistas consideran toda la Santa Biblia como la segura y única
+          regla de fe y esperanza. Sus doctrinas, por lo tanto, siguen
+          integralmente las enseñanzas bíblicas y están basadas en ellas. Los
+          Adventistas del Séptimo Día aceptan la Biblia como su único credo y
+          sostienen creencias fundamentales basadas en las enseñanzas de las
+          Sagradas Escrituras. Estas creencias, tal como se presentan aquí,
+          constituyen la forma en que la iglesia comprende y expresa las
+          enseñanzas de las Escrituras.
+        </p>
+      </em>
+    </figcaption>
+  </div>
+</header>
 
-<div class="container-card d-flex">
-  <belief-card
-    class="col-xxxl-4 col-xl-6 col-md-12 col-sm-12"
-    ng-repeat="belief in $ctrl.beliefs"
-    belief="belief"
-  ></belief-card>
+<div class="col-lg-8 col-md-10 col-sm-11 m-auto py-5">
+  <div class="container-card d-flex">
+    <belief-card
+      class="col-xxxl-4 col-xl-6 col-lg-12 col-md-12 col-sm-12"
+      ng-repeat="belief in $ctrl.beliefs"
+      belief="belief"
+    ></belief-card>
+  </div>
 </div>

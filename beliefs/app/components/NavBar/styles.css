@@ -30,9 +30,6 @@ header {
 a.nav-link {
   padding: 34px;
 }
-a.nav-link:hover a.nav-link:focus {
-  color: #f2ce1b;
-}
 .nav-item {
   position: relative;
   font-size: 17px;
@@ -45,8 +42,9 @@ a.nav-link:hover a.nav-link:focus {
   content: "";
   display: block;
   width: 0;
-  height: 2px;
-  background-color: #f2ce1b;
+  height: 1px;
+  background-color: #fff;
+  /* background-color: #f2ce1b; */
   position: absolute;
   top: 63px;
   left: 50%;
@@ -80,6 +78,22 @@ a img {
 @media screen and (min-width: 992px) {
   .nav-list {
     height: 13vh;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .nav-list {
+    text-align: center !important;
+  }
+
+  .nav-item:hover.nav-item::after {
+    width: 20%;
+  }
+
+  .dropdown:hover .dropdown-menu {
+    display: block;
+    width: 40%;
+    margin: auto;
   }
 }
 

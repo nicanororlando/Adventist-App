@@ -2,11 +2,14 @@ var isCard;
 
 angular.module("beliefCard", []).component("beliefCard", {
   templateUrl: "./components/BeliefCard/index.html",
-  controller: function BeliefCardController($document, $window) {
-    // console.log(this.verses);
-
-    // this.verses = this.belief.description;
-    // console.log(this.verses);
+  bindings: {
+    belief: "=",
+  },
+  controller: function ($document, $window) {
+    this.$onInit = function () {
+      let verses = _.split(_.last(this.belief.description), "; ");
+      this.verses = verses;
+    };
 
     if (
       $document[0].documentElement.clientWidth < 576 ||
@@ -21,10 +24,7 @@ angular.module("beliefCard", []).component("beliefCard", {
       ) {
         this.isCard = true;
       } else isCard = false;
+      console.log(this.isCard);
     };
-  },
-  bindings: {
-    belief: "=",
-    verses: "=",
   },
 });
