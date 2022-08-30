@@ -1,4 +1,3 @@
-/* NAVBAR */
 header {
   position: sticky;
   top: 0;
@@ -28,10 +27,16 @@ header {
 .navbar-collapse {
   flex-grow: 0 !important;
 }
+a.nav-link {
+  padding: 34px;
+}
+a.nav-link:hover a.nav-link:focus {
+  color: #f2ce1b;
+}
 .nav-item {
   position: relative;
   font-size: 17px;
-  padding-bottom: 5px;
+  margin-left: 15px;
   cursor: pointer;
   user-select: none;
   text-transform: uppercase;
@@ -43,7 +48,7 @@ header {
   height: 2px;
   background-color: #f2ce1b;
   position: absolute;
-  top: 50px;
+  top: 63px;
   left: 50%;
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
@@ -55,8 +60,9 @@ header {
 }
 .dropdown:hover .dropdown-menu {
   display: block;
-  margin-top: 15.5px; /* remove the gap so it doesn't close */
+  /* margin-top: 15.5px; remove the gap so it doesn't close */
 }
+
 a img {
   background-color: #003c71;
 }
