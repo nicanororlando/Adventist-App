@@ -6,6 +6,7 @@ angular.module("app", [
   "ngRoute",
   "core",
   "beliefs",
+  "completeBelief",
   "topBar",
   "navBar",
   "appFooter",

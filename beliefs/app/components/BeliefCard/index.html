@@ -3,7 +3,9 @@
 <div>
   <div class="description mx-auto">
     <img ng-src="{{$ctrl.belief.image}}" alt="{{$ctrl.belief-title}}" />
-    <h6 class="belief-title">{{$ctrl.belief.id}}. {{$ctrl.belief.title}}</h6>
+    <h6 class="belief-title">
+      <a href="/the-trinity">{{$ctrl.belief.id}}. {{$ctrl.belief.title}}</a>
+    </h6>
     <p ng-hide="$last" ng-repeat="p in $ctrl.belief.description">{{p}}</p>
     <p>
       <span ng-repeat="ver in $ctrl.verses"

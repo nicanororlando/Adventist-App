@@ -15,6 +15,9 @@ angular.module("app").config([
       .when("/", {
         template: "<beliefs></beliefs>",
       })
+      .when("/:beliefId", {
+        template: "<complete-belief></complete-belief>",
+      })
       .otherwise("/");
   },
 ]);
