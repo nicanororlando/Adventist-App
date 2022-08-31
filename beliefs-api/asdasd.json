@@ -1,0 +1,23 @@
+{
+  "id": 1,
+  "title": "Belief:",
+  "description": "Description belief: ",
+  "image": "Image",
+  "data": [
+    {
+      "title": "String",
+      "description": [1, 2, 3, 4],
+      "image": null
+    },
+    {
+      "title": "String",
+      "description": [1, 2, 3, 4, 5, 6],
+      "image": "Image"
+    },
+    {
+      "title": "String",
+      "description": [1],
+      "image": null
+    }
+  ]
+}

@@ -9,6 +9,9 @@ angular.module("app").config([
       requireBase: false,
     });
     $routeProvider
+      // .when("/", {
+      //   template: "<h5 class='text-center'>Hola gato</h5>",
+      // })
       .when("/", {
         template: "<beliefs></beliefs>",
       })

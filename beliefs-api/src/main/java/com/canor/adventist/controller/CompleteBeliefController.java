@@ -1,8 +1,8 @@
 package com.canor.adventist.controller;
 
 import com.canor.adventist.exceptions.Exceptions;
-import com.canor.adventist.model.Belief;
-import com.canor.adventist.service.Belief.BeliefService;
+import com.canor.adventist.model.CompleteBelief.CompleteBelief;
+import com.canor.adventist.service.CompleteBelief.ICompleteBeliefService;
 import java.util.List;
 import javax.validation.ConstraintViolationException;
 import lombok.RequiredArgsConstructor;
@@ -23,38 +23,38 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
-@RequestMapping("/api/beliefs")
+@RequestMapping("/api/complete-beliefs")
 @RequiredArgsConstructor
-public class BeliefController {
+public class CompleteBeliefController {
 
-  private final BeliefService beliefService;
+  private final ICompleteBeliefService completeBeliefService;
 
   @GetMapping("")
-  public ResponseEntity<List<Belief>> findAll() {
-    List<Belief> beliefs = beliefService.findAll();
+  public ResponseEntity<List<CompleteBelief>> findAll() {
+    List<CompleteBelief> beliefs = completeBeliefService.findAll();
     return ResponseEntity
       .status(beliefs.size() > 0 ? HttpStatus.OK : HttpStatus.NOT_FOUND)
       .body(beliefs);
   }
 
-  @GetMapping("/{id}")
-  public ResponseEntity<?> findById(@PathVariable Integer id) {
+  @GetMapping("/{title}")
+  public ResponseEntity<?> findById(@PathVariable String title) {
     try {
       return ResponseEntity
         .status(HttpStatus.OK)
-        .body(beliefService.findById(id).get());
+        .body(completeBeliefService.findByTitle(title).get());
     } catch (Exception e) {
       return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
     }
   }
 
   @PostMapping("")
-  public ResponseEntity<?> save(@RequestBody Belief belief) {
+  public ResponseEntity<?> save(@RequestBody CompleteBelief belief) {
     try {
-      beliefService.save(belief);
+      completeBeliefService.save(belief);
       return ResponseEntity
         .status(HttpStatus.CREATED)
-        .body(beliefService.findById(belief.getId()));
+        .body(completeBeliefService.findById(belief.getId()));
     } catch (ConstraintViolationException e) {
       return ResponseEntity
         .status(HttpStatus.UNPROCESSABLE_ENTITY)
@@ -71,10 +71,14 @@ public class BeliefController {
   )
     throws Exception {
     try {
-      beliefService.saveFile(id, file);
+      completeBeliefService.saveFile(id, file);
       return ResponseEntity
         .status(HttpStatus.CREATED)
-        .body("\"image\"" + ": " + beliefService.findById(id).get().getImage());
+        .body(
+          "\"image\"" +
+          ": " +
+          completeBeliefService.findById(id).get().getImage()
+        );
     } catch (Exception e) {
       return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
     }
@@ -85,7 +89,7 @@ public class BeliefController {
   @ResponseStatus(code = HttpStatus.NOT_MODIFIED)
   public ResponseEntity<Resource> getImage(@PathVariable String filename)
     throws Exception {
-    Resource resource = (Resource) beliefService.uri(filename);
+    Resource resource = (Resource) completeBeliefService.uri(filename);
     return ResponseEntity
       .ok()
       .contentType(MediaType.IMAGE_PNG)
@@ -97,13 +101,13 @@ public class BeliefController {
   @PatchMapping("/{id}")
   public ResponseEntity<?> update(
     @PathVariable("id") Integer id,
-    @RequestBody Belief belief
+    @RequestBody CompleteBelief belief
   ) {
     try {
-      beliefService.update(id, belief);
+      completeBeliefService.update(id, belief);
       return ResponseEntity
         .status(HttpStatus.OK)
-        .body(beliefService.findById(id));
+        .body(completeBeliefService.findById(id));
     } catch (Exceptions e) {
       return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
     } catch (ConstraintViolationException e) {
@@ -116,7 +120,7 @@ public class BeliefController {
   @DeleteMapping("/{id}")
   public ResponseEntity<?> deleteById(@PathVariable Integer id) {
     try {
-      beliefService.deleteById(id);
+      completeBeliefService.deleteById(id);
       return ResponseEntity
         .status(HttpStatus.OK)
         .body("Succesfully deleted by id " + id);
@@ -125,15 +129,3 @@ public class BeliefController {
     }
   }
 }
-// // Para descargar archivos:
-// ResponseEntity
-//       .ok()
-// .header(
-//   HttpHeaders.CONTENT_DISPOSITION,
-//   "attachment; filename=\"" + resource.getFilename() + "\""
-// )
-// .body(resource);
-//   "attachment; filename=\"" + resource.getFilename() + "\""
-// )
-// .body(resource);
-
