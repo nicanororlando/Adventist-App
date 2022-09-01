@@ -1,7 +1,7 @@
 package com.canor.adventist.controller;
 
 import com.canor.adventist.exceptions.Exceptions;
-import com.canor.adventist.model.Belief;
+import com.canor.adventist.model.Belief.Belief;
 import com.canor.adventist.service.Belief.BeliefService;
 import java.util.List;
 import javax.validation.ConstraintViolationException;
@@ -37,12 +37,23 @@ public class BeliefController {
       .body(beliefs);
   }
 
-  @GetMapping("/{id}")
-  public ResponseEntity<?> findById(@PathVariable Integer id) {
+  // @GetMapping("/{id}")
+  // public ResponseEntity<?> findById(@PathVariable Integer id) {
+  //   try {
+  //     return ResponseEntity
+  //       .status(HttpStatus.OK)
+  //       .body(beliefService.findById(id).get());
+  //   } catch (Exception e) {
+  //     return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+  //   }
+  // }
+
+  @GetMapping("/{slug}")
+  public ResponseEntity<?> findBySlug(@PathVariable String slug) {
     try {
       return ResponseEntity
         .status(HttpStatus.OK)
-        .body(beliefService.findById(id).get());
+        .body(beliefService.findBySlug(slug).get());
     } catch (Exception e) {
       return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
     }
@@ -136,4 +147,3 @@ public class BeliefController {
 //   "attachment; filename=\"" + resource.getFilename() + "\""
 // )
 // .body(resource);
-

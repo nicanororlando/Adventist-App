@@ -2,7 +2,7 @@ package com.canor.adventist.service.Belief;
 
 import com.canor.adventist.controller.BeliefController;
 import com.canor.adventist.exceptions.Exceptions;
-import com.canor.adventist.model.Belief;
+import com.canor.adventist.model.Belief.Belief;
 import com.canor.adventist.repository.IBeliefRepository;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -32,18 +32,23 @@ public class BeliefService implements IBeliefService {
   @Override
   public void save(Belief belief)
     throws ConstraintViolationException, Exceptions {
-    Optional<Belief> optionalBeliefTitle = beliefRepository.findByTitle(
-      belief.getTitle()
+    Optional<Belief> optionalBeliefTitle = beliefRepository.findBySlug(
+      belief.getSlug()
     );
     Optional<Belief> optionalBeliefId = beliefRepository.findById(
       belief.getId()
     );
 
     if (optionalBeliefTitle.isPresent()) throw new Exceptions(
-      Exceptions.TitleAlreadyExists("Belief")
+      Exceptions.SlugAlreadyExists("Belief")
     ); else if (optionalBeliefId.isPresent()) throw new Exceptions(
       Exceptions.IdAlreadyExists("Belief")
     ); else beliefRepository.save(belief);
+  }
+
+  @Override
+  public Optional<Belief> findBySlug(String slug) {
+    return beliefRepository.findBySlug(slug);
   }
 
   @Override
@@ -108,6 +113,9 @@ public class BeliefService implements IBeliefService {
     Optional<Belief> optionalBelief = beliefRepository.findById(id);
     if (optionalBelief.isPresent()) {
       Belief newBelief = optionalBelief.get();
+      newBelief.setSlug(
+        belief.getSlug() != null ? belief.getSlug() : newBelief.getSlug()
+      );
       newBelief.setTitle(
         belief.getTitle() != null ? belief.getTitle() : newBelief.getTitle()
       );
@@ -118,6 +126,11 @@ public class BeliefService implements IBeliefService {
       );
       newBelief.setImage(
         belief.getImage() != null ? belief.getImage() : newBelief.getImage()
+      );
+      newBelief.setMoreDetails(
+        belief.getMoreDetails() != null
+          ? belief.getMoreDetails()
+          : newBelief.getMoreDetails()
       );
 
       beliefRepository.save(newBelief);

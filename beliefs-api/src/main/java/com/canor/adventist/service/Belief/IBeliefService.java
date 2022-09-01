@@ -1,7 +1,7 @@
 package com.canor.adventist.service.Belief;
 
 import com.canor.adventist.exceptions.Exceptions;
-import com.canor.adventist.model.Belief;
+import com.canor.adventist.model.Belief.Belief;
 import java.util.List;
 import java.util.Optional;
 import javax.validation.ConstraintViolationException;
@@ -17,6 +17,8 @@ public interface IBeliefService {
   public List<Belief> findAll();
 
   public Optional<Belief> findById(Integer id);
+
+  public Optional<Belief> findBySlug(String slug);
 
   public void update(Integer id, Belief belief)
     throws ConstraintViolationException, Exceptions;

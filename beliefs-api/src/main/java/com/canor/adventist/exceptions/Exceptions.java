@@ -10,12 +10,12 @@ public class Exceptions extends Exception {
     return model + " with id '" + id + "' not found";
   }
 
-  public static String TitleNotFoundException(String model, String title) {
-    return model + " with title '" + title + "' not found";
+  public static String SlugNotFoundException(String model, String title) {
+    return model + " with slug '" + title + "' not found";
   }
 
-  public static String TitleAlreadyExists(String model) {
-    return model + " with given title already exists";
+  public static String SlugAlreadyExists(String model) {
+    return model + " with given slug already exists";
   }
 
   public static String IdAlreadyExists(String model) {

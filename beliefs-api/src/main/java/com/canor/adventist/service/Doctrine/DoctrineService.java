@@ -29,7 +29,7 @@ public class DoctrineService implements IDoctrineService {
     );
 
     if (optionalDoctrineTitle.isPresent()) throw new Exceptions(
-      Exceptions.TitleAlreadyExists("Doctrine")
+      Exceptions.SlugAlreadyExists("Doctrine")
     ); else if (optionalDoctrineId.isPresent()) throw new Exceptions(
       Exceptions.IdAlreadyExists("Doctrine")
     ); else doctrineRepository.save(doctrine);
@@ -52,7 +52,9 @@ public class DoctrineService implements IDoctrineService {
     if (optionalDoctrine.isPresent()) {
       Doctrine newDoctrine = optionalDoctrine.get();
       newDoctrine.setTitle(
-        doctrine.getTitle() != null ? doctrine.getTitle() : newDoctrine.getTitle()
+        doctrine.getTitle() != null
+          ? doctrine.getTitle()
+          : newDoctrine.getTitle()
       );
       newDoctrine.setDescription(
         doctrine.getDescription() != null
