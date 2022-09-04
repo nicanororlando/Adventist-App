@@ -9,7 +9,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.web.multipart.MultipartFile;
 
 public interface IBeliefService {
-  public void save(Belief belief)
+  public Belief save(Belief belief)
     throws ConstraintViolationException, Exceptions;
 
   public void saveFile(Integer id, MultipartFile file) throws Exception;

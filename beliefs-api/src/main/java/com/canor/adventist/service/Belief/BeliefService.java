@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import javax.validation.ConstraintViolationException;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -20,17 +19,15 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 
 @Service
-// Crea un constr al cual le pasa una referencia para inicializar el repositorio.
-@RequiredArgsConstructor
 public class BeliefService implements IBeliefService {
 
   private final Path rootFolder = Paths.get("uploads");
 
   @Autowired
-  private final IBeliefRepository beliefRepository;
+  private IBeliefRepository beliefRepository;
 
   @Override
-  public void save(Belief belief)
+  public Belief save(Belief belief)
     throws ConstraintViolationException, Exceptions {
     Optional<Belief> optionalBeliefTitle = beliefRepository.findBySlug(
       belief.getSlug()
@@ -43,12 +40,7 @@ public class BeliefService implements IBeliefService {
       Exceptions.SlugAlreadyExists("Belief")
     ); else if (optionalBeliefId.isPresent()) throw new Exceptions(
       Exceptions.IdAlreadyExists("Belief")
-    ); else beliefRepository.save(belief);
-  }
-
-  @Override
-  public Optional<Belief> findBySlug(String slug) {
-    return beliefRepository.findBySlug(slug);
+    ); else return beliefRepository.save(belief);
   }
 
   @Override
@@ -100,6 +92,11 @@ public class BeliefService implements IBeliefService {
   @Override
   public List<Belief> findAll() {
     return beliefRepository.findAll();
+  }
+
+  @Override
+  public Optional<Belief> findBySlug(String slug) {
+    return beliefRepository.findBySlug(slug);
   }
 
   @Override

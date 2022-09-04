@@ -4,7 +4,7 @@
 angular.module("beliefs").component("beliefs", {
   templateUrl: "./pages/beliefs/beliefs.template.html",
   controller: function BeliefsController($http) {
-    this.welcome = "Our beliefs";
+    this.title = "Our beliefs";
 
     $http.get("http://localhost:8080/api/beliefs").then(
       (res) => {

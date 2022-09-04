@@ -2,10 +2,10 @@ package com.canor.adventist.controller;
 
 import com.canor.adventist.exceptions.Exceptions;
 import com.canor.adventist.model.Belief.Belief;
-import com.canor.adventist.service.Belief.BeliefService;
+import com.canor.adventist.service.Belief.IBeliefService;
 import java.util.List;
 import javax.validation.ConstraintViolationException;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -24,10 +24,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/api/beliefs")
-@RequiredArgsConstructor
 public class BeliefController {
 
-  private final BeliefService beliefService;
+  @Autowired
+  private IBeliefService beliefService;
 
   @GetMapping("")
   public ResponseEntity<List<Belief>> findAll() {
@@ -59,13 +59,12 @@ public class BeliefController {
     }
   }
 
-  @PostMapping("")
+  @PostMapping
   public ResponseEntity<?> save(@RequestBody Belief belief) {
     try {
-      beliefService.save(belief);
       return ResponseEntity
         .status(HttpStatus.CREATED)
-        .body(beliefService.findById(belief.getId()));
+        .body(beliefService.save(belief));
     } catch (ConstraintViolationException e) {
       return ResponseEntity
         .status(HttpStatus.UNPROCESSABLE_ENTITY)

@@ -31,7 +31,7 @@
 
     <div ng-repeat="detail in $ctrl.belief.moreDetails">
       <h4>{{detail.title}}</h4>
-      <div ng-repeat="p in detail">
+      <div ng-repeat="p in detail.description">
         <p>{{p}}</p>
       </div>
       <div ng-if="detail.image">
