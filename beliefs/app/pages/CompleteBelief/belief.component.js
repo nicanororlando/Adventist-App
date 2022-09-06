@@ -1,13 +1,12 @@
 "use strict";
 
-// Register `beliefs` component, along with its associated controller and template
 angular.module("completeBelief").component("completeBelief", {
-  templateUrl: "./pages/completeBelief/belief.template.html",
+  templateUrl: "../pages/completeBelief/belief.template.html",
   controller: [
     "$routeParams",
     "$http",
     function CompleteBeliefsController($routeParams, $http) {
-      let url = "http://localhost:8080/api/beliefs/" + $routeParams.beliefId;
+      let url = "http://localhost:8080/api/beliefs/" + $routeParams.beliefSlug;
 
       $http.get(url).then(
         (res) => {

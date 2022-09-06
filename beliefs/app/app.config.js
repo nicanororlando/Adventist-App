@@ -9,15 +9,18 @@ angular.module("app").config([
       requireBase: false,
     });
     $routeProvider
-      // .when("/", {
-      //   template: "<h5 class='text-center'>Hola gato</h5>",
-      // })
-      .when("/", {
+      .when("/beliefs", {
         template: "<beliefs></beliefs>",
       })
-      .when("/:beliefId", {
+      .when("/beliefs/:beliefSlug", {
         template: "<complete-belief></complete-belief>",
       })
-      .otherwise("/");
+      .when("/study-the-bible", {
+        template: "<study-bible></study-bible>",
+      })
+      .otherwise({
+        // template: "<h3>a donde vas pa</h3>"
+        template: "<study-bible></study-bible>",
+      });
   },
 ]);

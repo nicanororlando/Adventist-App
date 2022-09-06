@@ -1,6 +1,5 @@
 "use strict";
 
-// Register `beliefs` component, along with its associated controller and template
 angular.module("beliefs").component("beliefs", {
   templateUrl: "./pages/beliefs/beliefs.template.html",
   controller: function BeliefsController($http) {
@@ -14,7 +13,5 @@ angular.module("beliefs").component("beliefs", {
         this.beliefs = [{ name: "Error!" + res.status }];
       }
     );
-
-    // this.beliefs = Belief.query();
   },
 });

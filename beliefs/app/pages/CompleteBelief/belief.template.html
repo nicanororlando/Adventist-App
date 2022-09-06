@@ -1,5 +1,11 @@
 <header class="belief-header d-sm-none d-md-block hide-xs">
-  <div class="container col-lg-8 col-md-10 col-sm-11">
+  <div
+    layout-padding
+    flex="66"
+    flex-sm="85"
+    flex-xs="95"
+    class="container col-lg-8 col-md-10 col-sm-11"
+  >
     <figcaption>
       <h1>Creencias</h1>
       <em
@@ -17,7 +23,9 @@
   </div>
 </header>
 
-<div class="col-lg-8 col-md-10 col-sm-11 m-auto py-5">
+<loading></loading>
+
+<div layout-padding flex="66" flex-sm="85" flex-xs="95" class="m-auto py-5">
   <div class="container-card d-flex">
     <div>
       <h3>{{$ctrl.belief.title}}</h3>

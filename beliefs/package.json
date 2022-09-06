@@ -6,8 +6,9 @@
   "license": "MIT",
   "dependencies": {
     "angular": "1.8.x",
-    "angular-loader": "^1.7.5",
     "angular-animate": "1.8.x",
+    "angular-loader": "^1.7.5",
+    "angular-material": "^1.2.5",
     "angular-resource": "1.8.x",
     "angular-route": "1.8.x",
     "bootstrap": "5.0.x",
