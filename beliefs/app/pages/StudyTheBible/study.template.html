@@ -3,61 +3,79 @@
   flex="66"
   flex-sm="85"
   flex-xs="95"
-  class="m-auto py-5"
+  class="m-auto my-15"
 >
-  <form name="projectForm">
-    <md-input-container class="md-block">
-      <label>Description</label>
-      <input
-        md-maxlength="30"
-        required
-        md-no-asterisk
-        name="description"
-        ng-model="project.description"
-      />
-      <div ng-messages="projectForm.description.$error">
-        <div ng-message="required">This is required.</div>
-        <div ng-message="md-maxlength">
-          The description must be less than 30 characters long.
-        </div>
-      </div>
-    </md-input-container>
+  <h3 flex="80" class="mx-auto my-15">
+    Looking for a free online Bible study to lead you through God’s Word? Find
+    one in the list below.
+  </h3>
+  <p flex="80" class="mx-auto my-15">
+    As Seventh-day Adventists, our promise is to help our friends understand the
+    Bible to find freedom, healing and hope in Jesus. If you would like to
+    experience this kind of relationship with Jesus and learn more about His
+    plans for you, we’ve selected a variety of Bible studies to get you started.
+  </p>
 
+  <md-divider></md-divider>
+
+  <div layout="row" layout-wrap layout-align="space-between" class="pb-15">
+    <itdl-card
+      ng-repeat="bibleStudy in $ctrl.bibleStudies"
+      data="bibleStudy"
+      flex="95"
+      flex-lg="50"
+      flex-xl="33"
+    ></itdl-card>
+  </div>
+
+  <md-divider class="my-15"></md-divider>
+
+  <h2 class="mt-30">Would you like to study with us?</h2>
+  <form name="studiesForm" class="mb-15">
     <div layout="row">
       <md-input-container flex="50">
-        <label>Client Name</label>
-        <input required name="clientName" ng-model="project.clientName" />
-        <div ng-messages="projectForm.clientName.$error">
+        <label>Name</label>
+        <input required name="name" ng-model="project.name" />
+        <div ng-messages="studiesForm.name.$error">
           <div ng-message="required">This is required.</div>
         </div>
       </md-input-container>
-
       <md-input-container flex="50">
-        <label>Project Type</label>
-        <md-select name="type" ng-model="project.type" required>
-          <md-option value="app">Application</md-option>
-          <md-option value="web">Website</md-option>
-        </md-select>
-        <div ng-messages="projectForm.type.$error">
-          <div ng-message="required">This is required.</div>
+        <label>Phone Number</label>
+        <input
+          required
+          type="number"
+          step="any"
+          name="phone"
+          ng-model="project.phone"
+          min="10000000"
+          max="100000000000"
+        />
+        <div
+          ng-messages="studiesForm.rate.$error"
+          multiple
+          md-auto-hide="false"
+        >
+          <div ng-message="required">This is required</div>
+          <div ng-message="min">This phone number is too short</div>
+          <div ng-message="max">This phone number is too long</div>
         </div>
       </md-input-container>
     </div>
 
     <md-input-container class="md-block">
-      <label>Client Email</label>
+      <label>Email</label>
       <input
-        required
         type="email"
-        name="clientEmail"
-        ng-model="project.clientEmail"
+        name="email"
+        ng-model="project.email"
         minlength="10"
         maxlength="100"
         ng-pattern="/^.+@.+\..+$/"
       />
 
-      <div ng-messages="projectForm.clientEmail.$error" role="alert">
-        <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+      <div ng-messages="studiesForm.email.$error" role="alert">
+        <div ng-message-exp="['minlength', 'maxlength', 'pattern']">
           Your email must be between 10 and 100 characters long and look like an
           e-mail address.
         </div>
@@ -65,66 +83,35 @@
     </md-input-container>
 
     <md-input-container class="md-block">
-      <label>Hourly Rate (USD)</label>
-      <input
-        required
-        type="number"
-        step="any"
-        name="rate"
-        ng-model="project.rate"
-        min="800"
-        max="4999"
-        ng-pattern="/^1234$/"
-      />
-
-      <div ng-messages="projectForm.rate.$error" multiple md-auto-hide="false">
-        <div ng-message="required">
-          You've got to charge something! You can't just <b>give away</b> a
-          Missile Defense System.
-        </div>
-
-        <div ng-message="min">
-          You should charge at least $800 an hour. This job is a big deal... if
-          you mess up, everyone dies!
-        </div>
-
-        <div ng-message="pattern">You should charge exactly $1,234.</div>
-
-        <div ng-message="max">
-          {{projectForm.rate.$viewValue | currency:"$":0}} an hour? That's a
-          little ridiculous. I doubt even Bill Clinton could afford that.
-        </div>
-      </div>
-    </md-input-container>
-
-    <md-input-container class="md-block">
-      <md-checkbox name="tos" ng-model="project.tos" required>
-        I accept the terms of service.
-      </md-checkbox>
-      <div ng-messages="projectForm.tos.$error" multiple md-auto-hide="false">
-        <div ng-message="required">
-          You must accept the terms of service before you can proceed.
-        </div>
-      </div>
-    </md-input-container>
-
-    <md-input-container class="md-block">
-      <md-switch
+      <md-checkbox
+        layout="row"
         class="md-primary"
-        name="special"
-        ng-model="project.special"
+        name="study"
+        ng-model="project.study"
         required
       >
-        Enable special options.
+        I'd like to study the bible
+      </md-checkbox>
+      <md-checkbox
+        layout="row"
+        class="md-primary"
+        name="moreInfo"
+        ng-model="project.moreInfo "
+        required
+      >
+        I just want more information about the Adventist Church
+      </md-checkbox>
+    </md-input-container>
+
+    <md-input-container class="md-block">
+      <md-switch class="md-primary" name="msg" ng-model="$ctrl.project.msg">
+        Enable sending messages
       </md-switch>
-      <div ng-messages="projectForm.special.$error" multiple>
-        <div ng-message="required">
-          You must enable all special options before you can proceed.
-        </div>
-      </div>
     </md-input-container>
     <div>
-      <md-button type="submit">Submit</md-button>
+      <md-button class="md-raised md-primary mx-0" type="submit"
+        >Submit</md-button
+      >
     </div>
   </form>
 </md-content>

@@ -1,5 +1,7 @@
+<!-- ESTO TIENE Q SER UN COMPONENTE -->
+
 <header class="belief-header d-sm-none d-md-block hide-xs">
-  <div class="container col-lg-8 col-md-10 col-sm-11">
+  <div flex="66" flex-sm="85" class="container m-auto">
     <figcaption>
       <h1>{{$ctrl.title}}</h1>
       <em
@@ -19,12 +21,14 @@
 
 <loading></loading>
 
-<div class="col-lg-8 col-md-10 col-sm-11 m-auto py-5">
-  <div class="container-card d-flex">
+<div flex="66" flex-sm="85" flex-xs="95" class="m-auto py-15">
+  <div layout="row" layout-wrap layout-align="space-between">
     <belief-card
-      class="col-xxxl-4 col-xl-6 col-lg-12"
       ng-repeat="belief in $ctrl.beliefs"
       belief="belief"
+      flex="95"
+      flex-lg="50"
+      flex-xl="33"
     ></belief-card>
   </div>
 </div>

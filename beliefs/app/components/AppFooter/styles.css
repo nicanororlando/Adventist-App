@@ -13,8 +13,8 @@ address a {
   background-color: #003c71;
   color: #fff;
   text-align: center;
-  padding: 30px;
+  padding: 20px;
 }
 .copyright p {
-  margin-bottom: 2px;
+  margin: 0;
 }

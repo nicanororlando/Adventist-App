@@ -4,8 +4,6 @@ describe("completeBelief module", function () {
   beforeEach(module("completeBelief"));
 
   describe("CompleteBeliefController", function () {
-    var $httpBackend, ctrl;
-
     var beliefTestData = {
       id: 1,
       slug: "test-belief",
@@ -27,27 +25,27 @@ describe("completeBelief module", function () {
       _$httpBackend_,
       $routeParams
     ) {
-      $httpBackend = _$httpBackend_;
-      $httpBackend
+      this.$httpBackend = _$httpBackend_;
+      this.$httpBackend
         .expectGET("http://localhost:8080/api/beliefs/test-belief")
         .respond(beliefTestData);
 
-      $routeParams.beliefId = "test-belief";
+      $routeParams.beliefSlug = "test-belief";
 
-      ctrl = $componentController("completeBelief");
+      this.ctrl = $componentController("completeBelief");
     }));
 
     it("should define component controller", inject(function () {
-      expect(ctrl).toBeDefined();
+      expect(this.ctrl).toBeDefined();
     }));
 
     it("should fetch the complete belief", () => {
       jasmine.addCustomEqualityTester(angular.equals);
 
-      expect(ctrl.belief).toEqual();
+      expect(this.ctrl.belief).toEqual();
 
-      $httpBackend.flush();
-      expect(ctrl.belief).toEqual(beliefTestData);
+      this.$httpBackend.flush();
+      expect(this.ctrl.belief).toEqual(beliefTestData);
     });
   });
 });

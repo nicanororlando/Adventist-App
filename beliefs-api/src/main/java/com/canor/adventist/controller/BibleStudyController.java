@@ -1,8 +1,8 @@
 package com.canor.adventist.controller;
 
 import com.canor.adventist.exceptions.Exceptions;
-import com.canor.adventist.model.Doctrine;
-import com.canor.adventist.service.Doctrine.IDoctrineService;
+import com.canor.adventist.model.BibleStudy;
+import com.canor.adventist.service.StudyBible.IBibleStudyService;
 import java.util.List;
 import javax.validation.ConstraintViolationException;
 import lombok.RequiredArgsConstructor;
@@ -18,15 +18,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/doctrines")
+@RequestMapping("/api/bible-studies")
 @RequiredArgsConstructor
-public class DoctrineController {
+public class BibleStudyController {
 
-  private final IDoctrineService doctrineService;
+  private final IBibleStudyService bibleStudyService;
 
   @GetMapping("")
-  public ResponseEntity<List<Doctrine>> findAll() {
-    List<Doctrine> Doctrines = doctrineService.findAll();
+  public ResponseEntity<List<BibleStudy>> findAll() {
+    List<BibleStudy> Doctrines = bibleStudyService.findAll();
     return ResponseEntity
       .status(Doctrines.size() > 0 ? HttpStatus.OK : HttpStatus.NOT_FOUND)
       .body(Doctrines);
@@ -37,19 +37,19 @@ public class DoctrineController {
     try {
       return ResponseEntity
         .status(HttpStatus.OK)
-        .body(doctrineService.findById(id).get());
+        .body(bibleStudyService.findById(id).get());
     } catch (Exception e) {
       return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
     }
   }
 
   @PostMapping
-  public ResponseEntity<?> save(@RequestBody Doctrine doctrine) {
+  public ResponseEntity<?> save(@RequestBody BibleStudy bibleStudy) {
     try {
-      doctrineService.save(doctrine);
+      bibleStudyService.save(bibleStudy);
       return ResponseEntity
         .status(HttpStatus.CREATED)
-        .body(doctrineService.findById(doctrine.getId()));
+        .body(bibleStudyService.findById(bibleStudy.getId()));
     } catch (ConstraintViolationException e) {
       return ResponseEntity
         .status(HttpStatus.UNPROCESSABLE_ENTITY)
@@ -62,13 +62,13 @@ public class DoctrineController {
   @PatchMapping("/{id}")
   public ResponseEntity<?> update(
     @PathVariable("id") Integer id,
-    @RequestBody Doctrine doctrine
+    @RequestBody BibleStudy bibleStudy
   ) {
     try {
-      doctrineService.update(id, doctrine);
+      bibleStudyService.update(id, bibleStudy);
       return ResponseEntity
         .status(HttpStatus.OK)
-        .body(doctrineService.findById(id));
+        .body(bibleStudyService.findById(id));
     } catch (Exceptions e) {
       return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
     } catch (ConstraintViolationException e) {
@@ -81,7 +81,7 @@ public class DoctrineController {
   @DeleteMapping("/{id}")
   public ResponseEntity<?> deleteById(@PathVariable Integer id) {
     try {
-      doctrineService.deleteById(id);
+      bibleStudyService.deleteById(id);
       return ResponseEntity
         .status(HttpStatus.OK)
         .body("Succesfully deleted by id " + id);

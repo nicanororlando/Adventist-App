@@ -7,6 +7,7 @@ import com.canor.adventist.repository.IBeliefRepository;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -91,7 +92,10 @@ public class BeliefService implements IBeliefService {
 
   @Override
   public List<Belief> findAll() {
-    return beliefRepository.findAll();
+    List<Belief> list = beliefRepository.findAll();
+    list.sort(Comparator.comparing(Belief::getId));
+
+    return list;
   }
 
   @Override

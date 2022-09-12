@@ -2,14 +2,26 @@ header {
   position: sticky;
   top: 0;
   background-color: #003c71;
-  padding: 0;
-  margin: 0;
   z-index: 10;
 }
+.md-nav-item:first-of-type {
+  margin-left: 0;
+}
+md-nav-bar .md-button._md-nav-button.md-unselected {
+  color: #fff;
+}
 #navbar {
-  padding-top: 0;
+  background-color: #003c71;
+  height: fit-content;
+  overflow: hidden;
+}
+.navbar-brand {
+  text-decoration: none;
+  height: fit-content;
+  color: #fff;
 }
 .nav-list {
+  height: fit-content;
   font-size: 15px;
   font-weight: 400;
 }
@@ -22,78 +34,27 @@ header {
   fill: #fff;
 }
 .title {
+  margin-left: 7px;
   font-size: 12px;
 }
-.navbar-collapse {
-  flex-grow: 0 !important;
+
+md-sidenav {
+  background-color: #003665;
+  margin-top: 117px;
+  height: min-content;
 }
-a.nav-link {
-  padding: 34px;
-}
-.nav-item {
-  position: relative;
-  font-size: 17px;
-  margin-left: 15px;
-  cursor: pointer;
-  user-select: none;
-  text-transform: uppercase;
-}
-.nav-item::after {
-  content: "";
-  display: block;
-  width: 0;
-  height: 1px;
-  background-color: #fff;
-  /* background-color: #f2ce1b; */
-  position: absolute;
-  top: 63px;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-  transform: translateX(-50%);
-  -webkit-transition: all 0.4s;
-  transition: width 0.4s;
-}
-.nav-item:hover.nav-item::after {
-  width: 70%;
-}
-.dropdown:hover .dropdown-menu {
-  display: block;
-  /* margin-top: 15.5px; remove the gap so it doesn't close */
+md-sidenav md-content {
+  background-color: #003665;
+  overflow: hidden;
 }
 
-a img {
-  background-color: #003c71;
-}
-
-/* CLASES */
-.px-200 {
-  padding-left: 200px;
-  padding-right: 200px;
-}
-
-.show {
-  background-color: #003c71;
-}
-
-@media screen and (min-width: 992px) {
-  .nav-list {
-    height: 13vh;
+@media screen and (max-width: 960px) {
+  .md-button._md-nav-button {
+    text-align: start;
+    width: 280px;
   }
-}
-
-@media screen and (max-width: 992px) {
-  .nav-list {
-    text-align: center !important;
-  }
-
-  .nav-item:hover.nav-item::after {
-    width: 20%;
-  }
-
-  .dropdown:hover .dropdown-menu {
-    display: block;
-    width: 40%;
-    margin: auto;
+  md-nav-ink-bar {
+    display: none;
   }
 }
 

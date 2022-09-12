@@ -1,14 +1,7 @@
 .topbar {
+  /* height: 40px; */
   background-color: #f2ce1b;
   list-style: none;
-}
-.social a {
-  width: 30px;
-  color: #003c71;
-}
-.social a:hover,
-.btn-login:hover {
-  color: #92ccff;
 }
 .btn-login {
   text-decoration: none;
@@ -18,11 +11,5 @@ div > a {
   padding-left: 8px;
 }
 a > img {
-  margin-bottom: 2px;
-}
-
-@media screen and (max-width: 576px) {
-  .cont {
-    width: 91.666667%;
-  }
+  margin-bottom: 0;
 }

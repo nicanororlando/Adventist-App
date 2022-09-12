@@ -7,9 +7,3 @@ body {
 main {
   background: #f9f9f9;
 }
-
-@media screen and (max-width: 576px) {
-  .hide-xs {
-    display: none;
-  }
-}

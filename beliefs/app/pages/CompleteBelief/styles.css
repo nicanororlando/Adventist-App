@@ -31,17 +31,8 @@ img {
   margin-bottom: 15px;
 }
 
-@media screen and (min-width: 1900px) {
-  .col-xl-6 {
-    width: 33.333333% !important;
-  }
-}
-
 @media screen and (max-width: 576px) {
   .container-card {
     justify-content: center;
-  }
-  .hide-xs {
-    display: none;
   }
 }
