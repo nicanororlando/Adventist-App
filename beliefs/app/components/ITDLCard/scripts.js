@@ -5,10 +5,4 @@ angular.module("itdlCard", []).component("itdlCard", {
   bindings: {
     data: "=",
   },
-  controller: function ITDLCardController($scope, $window) {
-    $scope.openLink = function (link) {
-      console.log(link);
-      $window.open(link, "_blank");
-    };
-  },
 });
