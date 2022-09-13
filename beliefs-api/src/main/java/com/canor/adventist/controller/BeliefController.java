@@ -150,14 +150,3 @@ public class BeliefController {
     }
   }
 }
-// // Para descargar archivos:
-// ResponseEntity
-//       .ok()
-// .header(
-//   HttpHeaders.CONTENT_DISPOSITION,
-//   "attachment; filename=\"" + resource.getFilename() + "\""
-// )
-// .body(resource);
-//   "attachment; filename=\"" + resource.getFilename() + "\""
-// )
-// .body(resource);

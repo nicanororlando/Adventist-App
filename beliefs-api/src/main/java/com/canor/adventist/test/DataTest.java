@@ -52,9 +52,14 @@ public class DataTest {
   }
 
   public static Optional<Belief> createBelief222() {
-    List<String> description1 = Arrays.asList("This", "is", "description", "1");
+    List<String> description2 = Arrays.asList(
+      "This",
+      "is",
+      "description",
+      "222"
+    );
 
-    List<BeliefDetails> details1 = Arrays.asList(
+    List<BeliefDetails> details2 = Arrays.asList(
       new BeliefDetails(
         "First title",
         Arrays.asList("p1", "p2", "p3"),
@@ -82,9 +87,9 @@ public class DataTest {
         222,
         "belief-222",
         "Belief 222",
-        description1,
+        description2,
         "https://imagenbelief222.com",
-        details1
+        details2
       )
     );
   }

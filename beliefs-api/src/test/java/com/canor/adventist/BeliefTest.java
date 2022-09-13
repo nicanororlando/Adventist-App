@@ -10,14 +10,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import com.canor.adventist.controller.BeliefController;
 import com.canor.adventist.model.Belief.Belief;
-import com.canor.adventist.model.Belief.BeliefDetails;
 import com.canor.adventist.service.Belief.IBeliefService;
 import com.canor.adventist.test.DataTest;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -84,33 +82,7 @@ public class BeliefTest {
 
   @Test
   public void save() throws JsonProcessingException, Exception {
-    List<String> description3 = new ArrayList<>(
-      Arrays.asList("This", "is", "description", "3")
-    );
-    List<BeliefDetails> details3 = new ArrayList<>(
-      Arrays.asList(
-        new BeliefDetails(
-          "First title",
-          Arrays.asList("p1", "p2", "p3"),
-          "firstImageDetail.com"
-        ),
-        new BeliefDetails(
-          "Second title",
-          Arrays.asList("p1", "p2", "p3"),
-          "secondImageDetail.com"
-        )
-      )
-    );
-
-    Belief belief = new Belief(
-      333,
-      "belief-333",
-      "Belief 333",
-      description3,
-      "https://imagenbelief333.com",
-      details3
-    );
-
+    Belief belief = DataTest.createBelief222().get();
     when(beliefService.save(any())).thenReturn(belief);
 
     mockMvc
@@ -121,12 +93,12 @@ public class BeliefTest {
       )
       .andExpect(content().contentType(MediaType.APPLICATION_JSON))
       .andExpect(status().isCreated())
-      .andExpect(jsonPath("$.id").value(333))
-      .andExpect(jsonPath("$.slug").value("belief-333"))
-      .andExpect(jsonPath("$.title").value("Belief 333"))
-      .andExpect(jsonPath("$.description").value(description3))
-      .andExpect(jsonPath("$.image").value("https://imagenbelief333.com"));
-    // .andExpect(jsonPath("$.moreDetails").value(details3));
+      .andExpect(jsonPath("$.id").value(222))
+      .andExpect(jsonPath("$.slug").value("belief-222"))
+      .andExpect(jsonPath("$.title").value("Belief 222"))
+      // .andExpect(jsonPath("$.description").value(belief.getDescription()))
+      .andExpect(jsonPath("$.image").value("https://imagenbelief222.com"));
+    //  .andExpect(jsonPath("$.moreDetails").value(details3));
 
     verify(beliefService).save(any());
     assertNotNull(beliefService.findBySlug(belief.getSlug()));

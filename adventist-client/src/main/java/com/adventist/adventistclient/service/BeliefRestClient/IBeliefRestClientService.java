@@ -1,0 +1,14 @@
+package com.adventist.adventistclient.service.BeliefRestClient;
+
+import com.adventist.adventistclient.dto.Belief.Belief;
+import java.util.List;
+
+public interface IBeliefRestClientService {
+  public List<Belief> retrieveAllBeliefs();
+
+  public Belief retrieveBeliefBySlug(String slug);
+
+  public Belief addNewBelief(Belief belief);
+
+  public String deleteBeliefById(Integer id);
+}
