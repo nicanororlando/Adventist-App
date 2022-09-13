@@ -7,6 +7,7 @@ import java.util.List;
 import javax.validation.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +30,7 @@ public class BeliefController {
   @Autowired
   private IBeliefService beliefService;
 
-  @GetMapping("")
+  @GetMapping
   public ResponseEntity<List<Belief>> findAll() {
     List<Belief> beliefs = beliefService.findAll();
     return ResponseEntity
@@ -101,6 +102,20 @@ public class BeliefController {
       .contentType(MediaType.IMAGE_PNG)
       .contentType(MediaType.IMAGE_JPEG)
       .contentType(MediaType.IMAGE_GIF)
+      .body(resource);
+  }
+
+  @GetMapping("/file/{filename:.+}/download")
+  @ResponseStatus(code = HttpStatus.NOT_MODIFIED)
+  public ResponseEntity<Resource> downloadImage(@PathVariable String filename)
+    throws Exception {
+    Resource resource = (Resource) beliefService.uri(filename);
+    return ResponseEntity
+      .ok()
+      .header(
+        HttpHeaders.CONTENT_DISPOSITION,
+        "attachment; filename=\"" + resource.getFilename() + "\""
+      )
       .body(resource);
   }
 

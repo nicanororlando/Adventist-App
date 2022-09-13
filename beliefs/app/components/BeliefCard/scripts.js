@@ -5,26 +5,14 @@ angular.module("beliefCard", []).component("beliefCard", {
   bindings: {
     belief: "=",
   },
-  controller: function ($document, $window) {
+  controller: function ($scope, $window) {
+    $scope.openLink = function (link) {
+      $window.open(link + "/download");
+    };
+
     this.$onInit = function () {
       let verses = _.split(_.last(this.belief.description), "; ");
       this.verses = verses;
-    };
-
-    if (
-      $document[0].documentElement.clientWidth < 576 ||
-      $document[0].documentElement.clientWidth > 1200
-    ) {
-      this.isCard = true;
-    } else isCard = false;
-    $window.onresize = () => {
-      if (
-        $document[0].documentElement.clientWidth < 576 ||
-        $document[0].documentElement.clientWidth > 1200
-      ) {
-        this.isCard = true;
-      } else isCard = false;
-      console.log(this.isCard);
     };
   },
 });

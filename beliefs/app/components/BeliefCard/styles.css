@@ -32,6 +32,7 @@
   transition: all 0.6s;
 }
 .description img {
+  cursor: pointer;
   padding: 10px;
   float: right;
   box-shadow: inset 10px 10px 50px #fff;

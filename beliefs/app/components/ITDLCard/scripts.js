@@ -5,4 +5,9 @@ angular.module("itdlCard", []).component("itdlCard", {
   bindings: {
     data: "=",
   },
+  controller: function ($scope, $window) {
+    $scope.openLink = function (link) {
+      $window.open(link + "/download");
+    };
+  },
 });
