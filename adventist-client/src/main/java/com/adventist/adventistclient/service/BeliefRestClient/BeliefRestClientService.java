@@ -4,23 +4,23 @@ import com.adventist.adventistclient.constants.AdventistRestClientConstants;
 import com.adventist.adventistclient.dto.Belief.Belief;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
+import reactor.core.publisher.Mono;
 
 @Slf4j
 @Service
-public class BeliefRestClientService {
+public class BeliefRestClientService implements IBeliefRestClientService {
 
-  private WebClient webClient;
+  private static final String baseUrl = "http://localhost:8080/api";
 
-  public BeliefRestClientService(WebClient webClient) {
-    this.webClient = webClient;
-  }
+  private WebClient webClient = WebClient.create(baseUrl);
 
   // GET
   // http://localhost:8080/api/beliefs
-  public List<Belief> retrieveAllBeliefs() {
+  public Mono<List<Belief>> retrieveAllBeliefs() {
     return webClient
       .get()
       .uri(AdventistRestClientConstants.GET_ALL_BELIEFS)
@@ -29,9 +29,9 @@ public class BeliefRestClientService {
       // Transformamos la respuesta a flux. Recibe como param el tipo de retorno.
       .bodyToFlux(Belief.class)
       // Guardamos los valores como lista.
-      .collectList()
-      // Para que la instancia 'webClient' se comporte de forma sincrona:
-      .block();
+      .collectList();
+    // Para que la instancia 'webClient' se comporte de forma sincrona:
+    // .block();
   }
 
   // GET

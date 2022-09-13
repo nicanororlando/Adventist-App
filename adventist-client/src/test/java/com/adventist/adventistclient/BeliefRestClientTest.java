@@ -5,29 +5,28 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.adventist.adventistclient.dto.Belief.Belief;
 import com.adventist.adventistclient.service.BeliefRestClient.BeliefRestClientService;
+import com.adventist.adventistclient.service.BeliefRestClient.IBeliefRestClientService;
 import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
+import reactor.core.publisher.Mono;
+import reactor.test.StepVerifier;
 
 public class BeliefRestClientTest {
 
-  private static final String baseUrl = "http://localhost:8080/api";
+  @Autowired
+  private IBeliefRestClientService beliefRestClientService;
 
-  private WebClient webClient = WebClient.create(baseUrl);
+  // @Test
+  // void retrieveAllBeliefs() {
+  //   Mono<List<Belief>> beliefs = beliefRestClientService.retrieveAllBeliefs();
 
-  // Creo una instancia pasandole como argumento 'webClient'
-  private BeliefRestClientService beliefRestClientService = new BeliefRestClientService(
-    webClient
-  );
-
-  @Test
-  void retrieveAllBeliefs() {
-    List<Belief> beliefs = beliefRestClientService.retrieveAllBeliefs();
-
-    assertTrue(beliefs.size() > 0);
-  }
+  //   StepVerifier.create(beliefs)
+  //   .expectNext(arg0)
+  // }
 
   @Test
   void retrieveBeliefBySlug() {

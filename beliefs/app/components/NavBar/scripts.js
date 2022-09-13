@@ -1,14 +1,11 @@
 angular.module("navBar", []).component("navBar", {
   templateUrl: "./components/NavBar/index.html",
-  controller: function NavBarController($scope, $mdSidenav) {
+  controller: function NavBarController($mdSidenav) {
     // $scope.currentNavItem = "beliefs";
 
-    $scope.toggleRight = buildToggler("right");
-
-    function buildToggler(componentId) {
-      return function () {
-        $mdSidenav(componentId).toggle();
-      };
-    }
+    this.active = false;
+    this.toggleRight = () => {
+      $mdSidenav("right").toggle();
+    };
   },
 });

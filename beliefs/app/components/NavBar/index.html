@@ -42,7 +42,8 @@
     </md-nav-bar>
     <menu-button
       hide-gt-sm
-      ng-click="toggleRight()"
+      ng-click="$ctrl.toggleRight()"
+      rndm="$ctrl.active"
       class="md-raised"
       layout-align="center center"
     ></menu-button>
@@ -51,8 +52,8 @@
 
 <md-sidenav
   class="md-sidenav-right"
+  md-is-open="$ctrl.active"
   md-component-id="right"
-  md-disable-backdrop=""
   md-whiteframe="4"
 >
   <md-content layout-margin="">

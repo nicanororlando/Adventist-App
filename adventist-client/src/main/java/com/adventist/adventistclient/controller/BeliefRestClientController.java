@@ -5,26 +5,27 @@ import com.adventist.adventistclient.service.BeliefRestClient.BeliefRestClientSe
 import com.adventist.adventistclient.service.BeliefRestClient.IBeliefRestClientService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Mono;
 
 @RestController
 @RequestMapping("/beliefs")
 public class BeliefRestClientController {
 
-  private static final String baseUrl = "http://localhost:8080/api";
-
-  private WebClient webClient = WebClient.create(baseUrl);
-
-  // Creo una instancia pasandole como argumento 'webClient'
-  private BeliefRestClientService beliefRestClientService = new BeliefRestClientService(
-    webClient
-  );
+  @Autowired
+  private IBeliefRestClientService beliefRestClientService;
 
   @GetMapping
-  private List<Belief> retrieveAllBeliefs() {
-    return beliefRestClientService.retrieveAllBeliefs();
+  private ResponseEntity<Mono<List<Belief>>> retrieveAllBeliefs() {
+    return ResponseEntity
+      .ok()
+      .contentType(MediaType.APPLICATION_JSON)
+      // Aca me subscribo al flujo y listo los clientes.
+      .body(beliefRestClientService.retrieveAllBeliefs());
   }
 }
