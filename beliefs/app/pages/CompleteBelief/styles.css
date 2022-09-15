@@ -1,26 +1,3 @@
-.belief-header {
-  position: static;
-  background: url(https://files.adventistas.org/institucional/es/sites/2/2013/02/crenca.jpg);
-  background-position: center center;
-  height: 500px;
-  z-index: 5;
-}
-
-.belief-header .container {
-  position: relative;
-  height: 100%;
-}
-
-.belief-header figcaption {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 550px;
-  background-color: rgba(242, 206, 27, 0.3);
-  color: #fff;
-  padding: 20px;
-}
-
 .container-card {
   justify-content: space-between;
   flex-wrap: wrap;
@@ -28,11 +5,15 @@
 
 img {
   max-width: 500px;
+  height: auto;
   margin-bottom: 15px;
 }
 
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 600px) {
   .container-card {
     justify-content: center;
+  }
+  .detail-image {
+    max-width: 350px;
   }
 }

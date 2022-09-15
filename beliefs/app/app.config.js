@@ -18,8 +18,10 @@ angular.module("app").config([
       .when("/study-the-bible", {
         template: "<study-bible></study-bible>",
       })
+      .when("/about-us", {
+        template: "<about-us></about-us>",
+      })
       .otherwise({
-        // template: "<h3>a donde vas pa</h3>"
         template: "<study-bible></study-bible>",
       });
   },

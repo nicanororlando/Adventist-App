@@ -56,10 +56,13 @@ md-sidenav md-content {
   md-nav-ink-bar {
     display: none;
   }
+  md-sidenav {
+    margin-top: 80px;
+  }
 }
 
-@media screen and (max-width: 576px) {
-  #navbar {
-    width: 91.666667%;
+@media screen and (max-width: 600px) {
+  md-sidenav {
+    margin-top: 80px;
   }
 }

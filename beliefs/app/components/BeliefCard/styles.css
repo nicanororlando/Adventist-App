@@ -4,7 +4,7 @@
 
 .belief-title {
   font-size: 1.2rem;
-  padding: 10px 0 10px 15px;
+  padding: 10px 15px;
   margin: 0;
 }
 
@@ -38,12 +38,6 @@
   box-shadow: inset 10px 10px 50px #fff;
 }
 
-@media screen and (min-width: 2800px) {
-  .description {
-    margin: 20px;
-  }
-}
-
 @media screen and (min-width: 1280px) and (max-width: 2800px) {
   .belief-title {
     text-align: center;
@@ -70,14 +64,13 @@
   }
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 650px) {
   .belief-title {
     text-align: center;
   }
   .description {
     position: relative;
     margin: auto;
-    width: 415px;
     padding: 0 0 10px 0;
     margin-top: 20px;
     margin-bottom: 20px;
@@ -88,10 +81,7 @@
     text-align: center;
   }
   .description img {
-    display: absolute;
-    top: 0;
-    left: 0;
-    width: 415px;
+    width: 100%;
     height: auto;
     padding: 0;
     margin-bottom: 10px;

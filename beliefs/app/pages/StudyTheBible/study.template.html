@@ -1,23 +1,7 @@
-<md-content
-  layout-padding
-  flex="66"
-  flex-sm="85"
-  flex-xs="95"
-  class="m-auto my-15"
->
-  <h3 flex="80" class="mx-auto my-15">
-    Looking for a free online Bible study to lead you through God’s Word? Find
-    one in the list below.
-  </h3>
-  <p flex="80" class="mx-auto my-15">
-    As Seventh-day Adventists, our promise is to help our friends understand the
-    Bible to find freedom, healing and hope in Jesus. If you would like to
-    experience this kind of relationship with Jesus and learn more about His
-    plans for you, we’ve selected a variety of Bible studies to get you started.
-  </p>
+<img-text-header title="$ctrl.title"></img-text-header>
 
-  <md-divider></md-divider>
-
+<div layout-padding flex="66" flex-sm="85" flex-xs="95" class="m-auto my-15">
+  <p>{{$ctrl.description}}</p>
   <div layout="row" layout-wrap layout-align="space-between" class="pb-15">
     <itdl-card
       ng-repeat="bibleStudy in $ctrl.bibleStudies"
@@ -28,7 +12,7 @@
     ></itdl-card>
   </div>
 
-  <md-divider class="my-15"></md-divider>
+  <div class="div"></div>
 
   <h2 class="mt-30">Would you like to study with us?</h2>
   <form name="studiesForm" class="mb-15">
@@ -109,9 +93,9 @@
       </md-switch>
     </md-input-container>
     <div>
-      <md-button class="md-raised md-primary mx-0" type="submit"
-        >Submit</md-button
-      >
+      <md-button class="md-raised md-primary mx-0" type="submit">
+        Submit
+      </md-button>
     </div>
   </form>
-</md-content>
+</div>

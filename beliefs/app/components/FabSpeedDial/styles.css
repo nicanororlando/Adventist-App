@@ -1,0 +1,14 @@
+/* .text-capitalize {
+  text-transform: capitalize;
+}
+p.note {
+  font-size: 1.2rem;
+} */
+.lock-size {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  min-width: 300px;
+  height: fit-content;
+  z-index: 20;
+}
