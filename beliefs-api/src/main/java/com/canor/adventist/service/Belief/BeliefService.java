@@ -99,13 +99,13 @@ public class BeliefService implements IBeliefService {
   }
 
   @Override
-  public Optional<Belief> findBySlug(String slug) {
-    return beliefRepository.findBySlug(slug);
+  public Optional<Belief> findById(Integer id) {
+    return beliefRepository.findById(id);
   }
 
   @Override
-  public Optional<Belief> findById(Integer id) {
-    return beliefRepository.findById(id);
+  public Optional<Belief> findBySlug(String slug) {
+    return beliefRepository.findBySlug(slug);
   }
 
   @Override

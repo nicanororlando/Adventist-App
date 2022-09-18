@@ -62,7 +62,8 @@ public class BeliefTest {
 
     mockMvc
       .perform(
-        get("/api/beliefs/belief-111").contentType(MediaType.APPLICATION_JSON)
+        get("/api/beliefs/slug/belief-111")
+          .contentType(MediaType.APPLICATION_JSON)
       )
       .andExpect(status().isOk())
       .andExpect(content().contentType(MediaType.APPLICATION_JSON))

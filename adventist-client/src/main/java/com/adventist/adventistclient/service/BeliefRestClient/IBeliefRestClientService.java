@@ -7,9 +7,11 @@ import reactor.core.publisher.Mono;
 public interface IBeliefRestClientService {
   public Mono<List<Belief>> retrieveAllBeliefs();
 
-  public Belief retrieveBeliefBySlug(String slug);
+  public Mono<Belief> retrieveBeliefBySlug(String slug);
 
-  public Belief addNewBelief(Belief belief);
+  public Mono<Belief> addNewBelief(Belief belief);
+
+  public Mono<Belief> updateBeliefById(Integer id, Belief belief);
 
   public String deleteBeliefById(Integer id);
 }

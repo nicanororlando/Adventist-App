@@ -38,18 +38,18 @@ public class BeliefController {
       .body(beliefs);
   }
 
-  // @GetMapping("/{id}")
-  // public ResponseEntity<?> findById(@PathVariable Integer id) {
-  //   try {
-  //     return ResponseEntity
-  //       .status(HttpStatus.OK)
-  //       .body(beliefService.findById(id).get());
-  //   } catch (Exception e) {
-  //     return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-  //   }
-  // }
+  @GetMapping("/id/{id}")
+  public ResponseEntity<?> findById(@PathVariable Integer id) {
+    try {
+      return ResponseEntity
+        .status(HttpStatus.OK)
+        .body(beliefService.findById(id).get());
+    } catch (Exception e) {
+      return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+    }
+  }
 
-  @GetMapping("/{slug}")
+  @GetMapping("/slug/{slug}")
   public ResponseEntity<?> findBySlug(@PathVariable String slug) {
     try {
       return ResponseEntity

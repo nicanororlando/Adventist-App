@@ -35,8 +35,8 @@ public class BeliefRestClientService implements IBeliefRestClientService {
   }
 
   // GET
-  // http://localhost:8080/api/beliefs/{slug}
-  public Belief retrieveBeliefBySlug(String slug) {
+  // http://localhost:8080/api/beliefs/slug/{slug}
+  public Mono<Belief> retrieveBeliefBySlug(String slug) {
     try {
       return webClient
         .get()
@@ -44,10 +44,9 @@ public class BeliefRestClientService implements IBeliefRestClientService {
         .uri(AdventistRestClientConstants.GET_BELIEF_BY_SLUG, slug)
         .retrieve()
         /* En este caso solo va a retornar un objeto, por eso lo convertimos a flujo mono. Nos va 
-            a convertir la respuesta anterior a una instancia de tipo 'Belief'. Mono es tipo una promesa
-            que nos va a retornar en un futuro lo que le decimos.*/
-        .bodyToMono(Belief.class)
-        .block();
+              a convertir la respuesta anterior a una instancia de tipo 'Belief'. Mono es tipo una promesa
+              que nos va a retornar en un futuro lo que le decimos.*/
+        .bodyToMono(Belief.class);
     } catch (WebClientResponseException e) {
       log.error(
         "Error Response Code is {} and the Response body is {}",
@@ -64,14 +63,24 @@ public class BeliefRestClientService implements IBeliefRestClientService {
 
   // POST
   // http://localhost:8080/api/beliefs/
-  public Belief addNewBelief(Belief belief) {
+  public Mono<Belief> addNewBelief(Belief belief) {
     return webClient
       .post()
       .uri(AdventistRestClientConstants.ADD_NEW_BELIEF)
       .bodyValue(belief)
       .retrieve()
-      .bodyToMono(Belief.class)
-      .block();
+      .bodyToMono(Belief.class);
+  }
+
+  // Patch
+  // http://localhost:8080/api/beliefs/id/{id}
+  public Mono<Belief> updateBeliefById(Integer id, Belief belief) {
+    return webClient
+      .patch()
+      .uri(AdventistRestClientConstants.PATCH_BELIEF_BY_SLUG, id)
+      .bodyValue(belief)
+      .retrieve()
+      .bodyToMono(Belief.class);
   }
 
   // DELETE
