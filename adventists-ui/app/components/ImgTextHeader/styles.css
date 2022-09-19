@@ -1,0 +1,25 @@
+.img-header {
+  position: static;
+  background: url(https://files.adventistas.org/institucional/es/sites/2/2013/02/crenca.jpg);
+  background-position: center center;
+  height: 350px;
+  z-index: 5;
+}
+
+.img-header .container {
+  position: relative;
+  height: 100%;
+}
+
+.img-header figcaption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  color: #fff;
+}
+
+@media screen and (max-width: 700px) {
+  .belief-header figcaption {
+    width: 450px !important;
+  }
+}

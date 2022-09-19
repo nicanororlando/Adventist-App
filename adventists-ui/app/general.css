@@ -1,0 +1,145 @@
+/* MY CLASSES */
+
+/* Link button */
+.link-buttons a,
+.link-button {
+  width: 30px;
+  color: #003c71;
+}
+.link-buttons a:hover,
+.link-button:hover {
+  cursor: pointer;
+  color: #92ccff;
+}
+/* Primary button */
+.md-button.md-primary.md-raised:not([disabled]),
+.md-button.md-primary.md-fab:not([disabled]) {
+  background: #003c71;
+  display: inline-block;
+  transform: perspective(1px) translateZ(0);
+  position: relative;
+  transition: color 0.1s;
+}
+.md-button.md-primary.md-raised:not([disabled]):before,
+.md-button.md-primary.md-fab:not([disabled]):hover:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  background-color: #92ccff;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  transition: transform 0.2s ease-out;
+}
+.md-button.md-primary.md-raised:not([disabled]):hover,
+.md-button.md-primary.md-fab:not([disabled]):hover {
+  background-color: #003c71;
+  color: black;
+}
+.md-button.md-primary.md-raised:not([disabled]):hover:before,
+.md-button.md-primary.md-fab:not([disabled]):hover:before {
+  transform: scaleX(1);
+}
+
+/* STYLES */
+.text-center {
+  text-align: center;
+}
+.list-unstyled {
+  list-style: none;
+  padding-left: 0;
+}
+
+/* MARGIN */
+.m-auto {
+  margin: auto;
+}
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+.my-auto {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+.m-0 {
+  margin: 0;
+}
+.mx-0 {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+.my-0 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.m-15 {
+  margin: 15px;
+}
+.mx-15 {
+  margin-left: 15px;
+  margin-right: 15px;
+}
+.my-15 {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.mt-15 {
+  margin-top: 15px;
+}
+.mb-15 {
+  margin-bottom: 15px;
+}
+.my-30 {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.mt-30 {
+  margin-top: 30px;
+}
+.mb-30 {
+  margin-bottom: 30px;
+}
+.my-50 {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+.mt-50 {
+  margin-top: 50px;
+}
+.mb-50 {
+  margin-bottom: 50px;
+}
+
+/* PADDING */
+.p-0 {
+  padding: 0;
+}
+.p-5 {
+  padding: 5px;
+}
+.px-5 {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.py-5 {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.p-15 {
+  padding: 15px;
+}
+.px-15 {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.py-15 {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+.p-30 {
+  padding: 30px;
+}

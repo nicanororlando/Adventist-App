@@ -1,0 +1,19 @@
+.container-card {
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+img {
+  max-width: 500px;
+  height: auto;
+  margin-bottom: 15px;
+}
+
+@media screen and (max-width: 600px) {
+  .container-card {
+    justify-content: center;
+  }
+  .detail-image {
+    max-width: 350px;
+  }
+}

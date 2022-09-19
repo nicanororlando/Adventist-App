@@ -1,0 +1,24 @@
+<div class="description mx-auto">
+  <div>
+    <img
+      ng-click="openLink($ctrl.belief.image)"
+      ng-src="{{$ctrl.belief.image}}"
+      alt="{{$ctrl.belief.title}}"
+    />
+    <md-tooltip md-direction="top">Download image</md-tooltip>
+  </div>
+
+  <h6 class="belief-title">
+    <a href="/beliefs/{{$ctrl.belief.slug}}">
+      {{$ctrl.belief.id}}.&nbsp;{{$ctrl.belief.title}}
+    </a>
+  </h6>
+  <p ng-hide="$last" ng-repeat="p in $ctrl.belief.description">{{p}}</p>
+  <p>
+    <span ng-repeat="ver in $ctrl.verses">
+      <a href="https://biblia.com/bible/nkjv/{{ver}}" target="_blank">
+        {{ver}}
+      </a>
+    </span>
+  </p>
+</div>

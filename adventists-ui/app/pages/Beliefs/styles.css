@@ -1,0 +1,18 @@
+beliefs h3 {
+  padding-left: 15px;
+}
+
+.container-card {
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+belief-card {
+  height: min-content;
+}
+
+@media screen and (max-width: 700px) {
+  .container-card {
+    justify-content: center;
+  }
+}

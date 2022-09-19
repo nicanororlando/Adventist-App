@@ -1,0 +1,32 @@
+<div
+  show-sm
+  show-xs
+  hide
+  class="lock-size"
+  layout="row"
+  layout-align="start center"
+>
+  <md-fab-speed-dial
+    md-open="$ctrl.isOpen"
+    md-direction="right"
+    ng-class="'md-scale'"
+  >
+    <md-fab-trigger>
+      <md-button aria-label="Plus" class="md-fab md-primary">
+        <md-icon class="fa fa-plus" aria-label="Plus"></md-icon>
+      </md-button>
+    </md-fab-trigger>
+
+    <md-fab-actions>
+      <md-button aria-label="Instagram" class="md-fab md-raised md-mini">
+        <md-icon class="fa fa-instagram" aria-label="Instagram"></md-icon>
+      </md-button>
+      <md-button aria-label="Facebook" class="md-fab md-raised md-mini">
+        <md-icon class="fa fa-facebook" aria-label="Facebook"></md-icon>
+      </md-button>
+      <md-button aria-label="Youtube" class="md-fab md-raised md-mini">
+        <md-icon class="fa fa-youtube" aria-label="Youtube"></md-icon>
+      </md-button>
+    </md-fab-actions>
+  </md-fab-speed-dial>
+</div>

@@ -1,0 +1,30 @@
+<img-text-header title="$ctrl.title"></img-text-header>
+
+<div layout-padding flex="66" flex-sm="85" flex-xs="95" class="m-auto py-5">
+  <p>{{$ctrl.description}}</p>
+  <div class="container-card d-flex">
+    <div>
+      <h3>{{$ctrl.belief.title}}</h3>
+      <div ng-repeat="p in $ctrl.belief.description">
+        <p>{{p}}</p>
+      </div>
+      <div ng-if="$ctrl.belief.image">
+        <img ng-src="{{$ctrl.belief.image}}" alt="$ctrl.belief.title" />
+      </div>
+    </div>
+
+    <div ng-repeat="detail in $ctrl.belief.moreDetails">
+      <h4 class="mt-50">{{detail.title}}</h4>
+      <div ng-repeat="p in detail.description">
+        <p>{{p}}</p>
+      </div>
+      <div ng-if="detail.image">
+        <img
+          class="detail-image"
+          ng-src="{{detail.image}}"
+          alt="detail.title"
+        />
+      </div>
+    </div>
+  </div>
+</div>
