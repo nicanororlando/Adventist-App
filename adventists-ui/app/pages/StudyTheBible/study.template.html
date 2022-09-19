@@ -1,0 +1,109 @@
+<img-text-header title="$ctrl.title"></img-text-header>
+
+<div layout-padding flex="66" flex-sm="85" flex-xs="95" class="m-auto my-15">
+  <p>{{$ctrl.description}}</p>
+  <div layout="row" layout-wrap layout-align="space-between" class="pb-15">
+    <itdl-card
+      ng-repeat="bibleStudy in $ctrl.bibleStudies"
+      data="bibleStudy"
+      flex="95"
+      flex-lg="50"
+      flex-xl="33"
+    ></itdl-card>
+  </div>
+
+  <div class="div"></div>
+
+  <h2 class="mt-30">Would you like to study with us?</h2>
+  <form
+    ng-submit="$ctrl.submitInfoUserStudy()"
+    name="studiesForm"
+    class="mb-15"
+  >
+    <div layout="row">
+      <md-input-container flex="50">
+        <label>Name</label>
+        <input required name="name" ng-model="$ctrl.user.name" />
+        <div ng-messages="studiesForm.name.$error">
+          <div ng-message="required">This is required.</div>
+        </div>
+      </md-input-container>
+      <md-input-container flex="50">
+        <label>Phone Number</label>
+        <input
+          required
+          type="number"
+          step="any"
+          name="phoneNumber"
+          ng-model="$ctrl.user.phoneNumber"
+          min="10000000"
+          max="100000000000"
+        />
+        <div
+          ng-messages="studiesForm.rate.$error"
+          multiple
+          md-auto-hide="false"
+        >
+          <div ng-message="required">This is required</div>
+          <div ng-message="min">This phone number is too short</div>
+          <div ng-message="max">This phone number is too long</div>
+        </div>
+      </md-input-container>
+    </div>
+
+    <md-input-container class="md-block">
+      <label>Email</label>
+      <input
+        type="email"
+        name="email"
+        ng-model="$ctrl.user.email"
+        minlength="10"
+        maxlength="100"
+        ng-pattern="/^.+@.+\..+$/"
+      />
+
+      <div ng-messages="user.email.$error" role="alert">
+        <div ng-message-exp="['minlength', 'maxlength', 'pattern']">
+          Your email must be between 10 and 100 characters long and look like an
+          e-mail address.
+        </div>
+      </div>
+    </md-input-container>
+
+    <md-input-container class="md-block">
+      <md-checkbox
+        layout="row"
+        class="md-primary"
+        name="wantToStudy"
+        ng-model="$ctrl.user.wantToStudy"
+        required
+      >
+        I'd like to study the bible
+      </md-checkbox>
+      <md-checkbox
+        layout="row"
+        class="md-primary"
+        name="wantMoreInfo"
+        ng-model="$ctrl.user.wantMoreInfo"
+        required
+      >
+        I want more information about the Adventist Church
+      </md-checkbox>
+    </md-input-container>
+
+    <md-input-container class="md-block">
+      <md-switch
+        class="md-primary"
+        name="enableSendMsg"
+        ng-model="$ctrl.user.enableSendMsg"
+      >
+        Enable sending messages
+      </md-switch>
+    </md-input-container>
+    <div>
+      <md-button class="md-raised md-primary mx-0" type="submit">
+        Submit
+      </md-button>
+    </div>
+  </form>
+</div>

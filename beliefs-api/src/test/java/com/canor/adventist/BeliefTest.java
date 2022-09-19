@@ -8,10 +8,10 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-import com.canor.adventist.controller.BeliefController;
-import com.canor.adventist.model.Belief.Belief;
-import com.canor.adventist.service.Belief.IBeliefService;
-import com.canor.adventist.test.DataTest;
+import com.adventists.beliefs.controller.BeliefController;
+import com.adventists.beliefs.model.Belief.Belief;
+import com.adventists.beliefs.service.Belief.IBeliefService;
+import com.canor.adventist.DataTest.DataTest;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.ArrayList;
