@@ -15,11 +15,7 @@
   <div class="div"></div>
 
   <h2 class="mt-30">Would you like to study with us?</h2>
-  <form
-    ng-submit="$ctrl.submitInfoUserStudy()"
-    name="studiesForm"
-    class="mb-15"
-  >
+  <form ng-submit="$ctrl.submitInfoUserForm()" name="studiesForm" class="mb-15">
     <div layout="row">
       <md-input-container flex="50">
         <label>Name</label>
@@ -104,6 +100,12 @@
       <md-button class="md-raised md-primary mx-0" type="submit">
         Submit
       </md-button>
+      <p
+        class="my-0"
+        ng-class="{'success': $ctrl.msg.success, 'error': !$ctrl.msg.success}"
+      >
+        {{$ctrl.msg.message}}
+      </p>
     </div>
   </form>
 </div>

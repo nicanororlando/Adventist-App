@@ -8,11 +8,11 @@
 		<version>2.7.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.adventist</groupId>
-	<artifactId>adventist-client</artifactId>
+	<groupId>com.adventists</groupId>
+	<artifactId>adventists-client</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>adventist-client</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Adventists client API</description>
 	<properties>
 		<java.version>18</java.version>
 	</properties>
