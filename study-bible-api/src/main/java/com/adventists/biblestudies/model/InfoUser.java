@@ -12,12 +12,20 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @AllArgsConstructor
 @NoArgsConstructor
 public class InfoUser {
-  
+
   @Id
   private String id;
 
+  @NotEmpty
   private String name;
-  private String email;
+
+  @NotEmpty
   private Long phoneNumber;
-  private 
+
+  @NotEmpty
+  private String email;
+
+  private boolean wantToStudy;
+  private boolean wantMoreInfo;
+  private boolean enableSendMsg;
 }
