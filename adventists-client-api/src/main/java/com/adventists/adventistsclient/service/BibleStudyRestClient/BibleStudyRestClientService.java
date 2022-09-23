@@ -3,13 +3,10 @@ package com.adventists.adventistsclient.service.BibleStudyRestClient;
 import com.adventists.adventistsclient.constants.AdventistRestClientConstants;
 import com.adventists.adventistsclient.model.BibleStudy;
 import com.adventists.adventistsclient.model.UserInfo;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
@@ -144,3 +141,4 @@ public class BibleStudyRestClientService
     private String message;
   }
 }
+        
