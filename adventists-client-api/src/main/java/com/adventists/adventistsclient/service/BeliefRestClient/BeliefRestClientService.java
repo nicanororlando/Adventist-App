@@ -13,7 +13,8 @@ import reactor.core.publisher.Mono;
 @Service
 public class BeliefRestClientService implements IBeliefRestClientService {
 
-  private static final String baseUrl = "http://localhost:8080/api/beliefs";
+  private static final String baseUrl =
+    AdventistRestClientConstants.API_BELIEFS_BASE_URL;
 
   private WebClient webClient = WebClient.create(baseUrl);
 

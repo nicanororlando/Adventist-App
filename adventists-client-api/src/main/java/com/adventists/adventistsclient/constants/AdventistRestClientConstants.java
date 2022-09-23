@@ -3,6 +3,8 @@ package com.adventists.adventistsclient.constants;
 public class AdventistRestClientConstants {
 
   // Beliefs:
+  public static final String API_BELIEFS_BASE_URL =
+    "http://localhost:8080/api/beliefs";
   public static final String GET_ALL_BELIEFS = "";
   public static final String POST_BELIEF = "";
   public static final String GET_BELIEF_BY_ID = "/id/{id}";
@@ -12,6 +14,8 @@ public class AdventistRestClientConstants {
   public static final String GET_FILE_BY_NAME = "/file";
 
   // Bible Studies
+  public static final String API_BIBLE_STUDIES_BASE_URL =
+    "http://localhost:8081/api/bible-studies";
   public static final String GET_ALL_BIBLE_STUDIES = "";
   public static final String POST_BIBLE_STUDY = "";
   public static final String GET_BIBLE_STUDY_BY_ID = "/{id}";

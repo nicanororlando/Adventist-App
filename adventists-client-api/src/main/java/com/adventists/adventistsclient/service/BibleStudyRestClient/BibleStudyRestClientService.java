@@ -3,11 +3,17 @@ package com.adventists.adventistsclient.service.BibleStudyRestClient;
 import com.adventists.adventistsclient.constants.AdventistRestClientConstants;
 import com.adventists.adventistsclient.model.BibleStudy;
 import com.adventists.adventistsclient.model.UserInfo;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
+import org.springframework.web.server.ResponseStatusException;
 import reactor.core.publisher.Mono;
 
 @Slf4j
@@ -16,7 +22,7 @@ public class BibleStudyRestClientService
   implements IBibleStudyRestClientService {
 
   private static final String baseUrl =
-    "http://localhost:8081/api/bible-studies";
+    AdventistRestClientConstants.API_BIBLE_STUDIES_BASE_URL;
 
   private WebClient webClient = WebClient.create(baseUrl);
 
@@ -116,6 +122,25 @@ public class BibleStudyRestClientService
       .uri(AdventistRestClientConstants.POST_USER_INFO)
       .bodyValue(userInfo)
       .retrieve()
+      .onStatus(
+        HttpStatus::isError,
+        clientResponse ->
+          clientResponse
+            .bodyToMono(MesaggeResponse.class)
+            .map(
+              error ->
+                new ResponseStatusException(
+                  clientResponse.statusCode(),
+                  error.getMessage()
+                )
+            )
+      )
       .bodyToMono(UserInfo.class);
+  }
+
+  @Data
+  private static class MesaggeResponse {
+
+    private String message;
   }
 }

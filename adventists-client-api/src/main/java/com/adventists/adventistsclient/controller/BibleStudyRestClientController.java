@@ -3,7 +3,10 @@ package com.adventists.adventistsclient.controller;
 import com.adventists.adventistsclient.model.BibleStudy;
 import com.adventists.adventistsclient.model.UserInfo;
 import com.adventists.adventistsclient.service.BibleStudyRestClient.IBibleStudyRestClientService;
+import java.net.URI;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -15,6 +18,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.support.WebExchangeBindException;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @RestController
@@ -72,11 +77,10 @@ public class BibleStudyRestClientController {
   }
 
   @PostMapping("/users")
-  public ResponseEntity<Mono<UserInfo>> addNewUserInfo(
-    @RequestBody UserInfo userInfo
-  ) {
+  public ResponseEntity<?> addNewUserInfo(@RequestBody UserInfo userInfo) {
     return ResponseEntity
-      .status(HttpStatus.CREATED)
+      .ok()
+      .contentType(MediaType.APPLICATION_JSON)
       .body(bibleStudyRestClientService.addNewUserInfo(userInfo));
   }
 }

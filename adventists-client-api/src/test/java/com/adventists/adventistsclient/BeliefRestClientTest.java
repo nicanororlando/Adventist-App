@@ -10,20 +10,33 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import com.adventists.adventistsclient.constants.AdventistRestClientConstants;
 import com.adventists.adventistsclient.model.Belief.Belief;
 import com.adventists.adventistsclient.service.BeliefRestClient.BeliefRestClientService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import okhttp3.mockwebserver.MockWebServer;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.mockito.ArgumentMatchers;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class BeliefRestClientTest {
+
+  @Autowired
+  private WebTestClient webTestClient;
 
   public static MockWebServer mockBackEnd;
 
@@ -34,11 +47,11 @@ public class BeliefRestClientTest {
   private WebClient.ResponseSpec responseSpec;
   private WebClient webClientMock;
 
+  private static final String baseUrl =
+    AdventistRestClientConstants.API_BELIEFS_BASE_URL;
+
   // REPASAR CONCEPTO DE @AUTOWIRED
   private BeliefRestClientService beliefRestClientService = new BeliefRestClientService();
-
-  // @InjectMocks
-  // private BeliefRestClientService beliefRestClientService;
 
   ObjectMapper objectMapper;
 
@@ -70,7 +83,8 @@ public class BeliefRestClientTest {
   }
 
   @Test
-  void retrieveAllBeliefs() {
+  @Order(1)
+  void testRetrieveAllBeliefs() {
     when(webClientMock.get()).thenReturn(requestHeadersUriSpec);
     when(requestHeadersUriSpec.uri(ArgumentMatchers.<String>notNull()))
       .thenReturn(requestHeadersSpec);
@@ -82,27 +96,24 @@ public class BeliefRestClientTest {
   }
 
   @Test
-  void retrieveBeliefBySlug() {
-    when(webClientMock.get()).thenReturn(requestHeadersUriSpec);
-    when(requestHeadersUriSpec.uri("/holy-scriptures"))
-      .thenReturn(requestHeadersSpec);
-    when(requestHeadersSpec.retrieve()).thenReturn(responseSpec);
-    when(
-      responseSpec
-        .bodyToMono(ArgumentMatchers.<Class<String>>notNull())
-        .thenReturn(Mono.just("resp"))
-    );
-    Mono<Belief> beliefMono = beliefRestClientService.retrieveBeliefBySlug(
-      "holy-scriptures"
-    );
-    // StepVerifier
-    //   .create(beliefMono)
-    //   .expectNextMatches(belief -> belief.getTitle().equals("Holy scriptures"))
-    //   .verifyComplete();
+  @Order(2)
+  void testRetrieveBeliefById() {
+    webTestClient
+      .get()
+      .uri(baseUrl + AdventistRestClientConstants.GET_BELIEF_BY_ID, 1)
+      .exchange()
+      .expectStatus()
+      .isOk()
+      .expectBody()
+      .consumeWith(
+        response ->
+          Assertions.assertThat(response.getResponseBody()).isNotNull()
+      );
   }
 
   @Test
-  void addNewBelief() {
+  @Order(3)
+  void testAddNewBelief() {
     // Belief belief = DataTest.createBelief111().get();
 
     when(webClientMock.post()).thenReturn(requestBodyUriSpec);

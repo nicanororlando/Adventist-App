@@ -38,17 +38,20 @@ public class UserInfoController {
     try {
       userInfoService.save(userInfo);
       response.put("message", "Data sent successfully");
+      response.put("status", HttpStatus.CREATED.value());
       response.put("userInfo", userInfo);
 
       return ResponseEntity.status(HttpStatus.CREATED).body(response);
     } catch (ConstraintViolationException e) {
       response.put("message", e.getMessage());
+      response.put("status", HttpStatus.UNPROCESSABLE_ENTITY.value());
 
       return ResponseEntity
         .status(HttpStatus.UNPROCESSABLE_ENTITY)
         .body(response);
     } catch (Exceptions e) {
       response.put("message", e.getMessage());
+      response.put("status", HttpStatus.CONFLICT.value());
 
       return ResponseEntity.status(HttpStatus.CONFLICT).body(response);
     }

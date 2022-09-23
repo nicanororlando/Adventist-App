@@ -2,7 +2,9 @@ package com.adventists.adventistsclient.service.BibleStudyRestClient;
 
 import com.adventists.adventistsclient.model.BibleStudy;
 import com.adventists.adventistsclient.model.UserInfo;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import reactor.core.publisher.Mono;
 
 public interface IBibleStudyRestClientService {
