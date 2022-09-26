@@ -3,8 +3,9 @@
 // Register `beliefs` component, along with its associated controller and template
 angular.module("studyBible").component("studyBible", {
   templateUrl: "./pages/StudyTheBible/study.template.html",
-  controller: function StudyTheBibleController($http, $window) {
+  controller: function StudyTheBibleController($http) {
     var self = this;
+
     this.title =
       "Find a free online Bible study to lead you through God’s Word.";
     this.description =
@@ -21,26 +22,20 @@ angular.module("studyBible").component("studyBible", {
       (res) => {
         this.bibleStudies = res.data;
       },
-      (res) => {
-        this.bibleStudies = { name: "Error!" + res.status };
+      () => {
+        this.error = "ERROR: Failed to load data";
       }
     );
 
     this.submitInfoUserForm = function () {
-      $http
-        .post("http://localhost:8081/api/bible-studies/users", this.user)
-        .then(
-          // $http.post("http://localhost:8888/bible-studies/users", this.user).then(
-          function suc0cessCallback(response) {
-            self.msg = { message: response.data.message, success: true };
-          },
-          function errorCallback(response) {
-            if (response.status == 409)
-              self.msg = { message: response.data.message, success: false };
-            else
-              self.msg = { message: "Internal server error", success: false };
-          }
-        );
+      $http.post("http://localhost:8888/bible-studies/users", this.user).then(
+        function successCallback(response) {
+          self.msg = { message: "Data sent successfully", success: true };
+        },
+        function errorCallback(response) {
+          self.msg = { message: response.data.message, success: false };
+        }
+      );
     };
   },
 });

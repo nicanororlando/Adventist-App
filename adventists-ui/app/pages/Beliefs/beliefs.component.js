@@ -11,8 +11,8 @@ angular.module("beliefs").component("beliefs", {
       (res) => {
         this.beliefs = res.data;
       },
-      (res) => {
-        this.beliefs = [{ name: "Error!" + res.status }];
+      () => {
+        this.error = "ERROR: Failed to load data";
       }
     );
   },

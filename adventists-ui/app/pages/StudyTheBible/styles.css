@@ -1,7 +1,3 @@
-.success {
-  color: #4bb543;
-}
-
-.error {
-  color: #ff0033;
+md-content {
+  overflow: hidden !important;
 }

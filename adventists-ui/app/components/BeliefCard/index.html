@@ -1,4 +1,5 @@
-<div class="description mx-auto">
+<!-- Web mode -->
+<div hide-xs class="description mx-auto">
   <div>
     <img
       ng-click="openLink($ctrl.belief.image)"
@@ -22,3 +23,18 @@
     </span>
   </p>
 </div>
+
+<!-- Mobile app mode -->
+<a
+  href="/beliefs/{{$ctrl.belief.slug}}"
+  hide-gt-xs
+  layout="row"
+  layout-align="space-between center"
+  class="belief-item-xs mx-auto my-15"
+>
+  <div layout="row">
+    <h1 class="mr-10">{{$ctrl.belief.id}}</h1>
+    <h3 class="my-auto px-15">{{$ctrl.belief.title}}</h3>
+  </div>
+  <img ng-src="../assets/right-arrow-icon.png" class="arrow-right" />
+</a>

@@ -1,4 +1,4 @@
-<img-text-header title="$ctrl.title"></img-text-header>
+<img-text-header hide-xs title="$ctrl.title"></img-text-header>
 
 <div
   layout-padding
@@ -7,15 +7,24 @@
   flex-xs="95"
   class="mx-auto mb-30 py-15"
 >
-  <p>{{$ctrl.description}}</p>
-  <div layout="row" layout-wrap layout-align="center" class="pb-15">
+  <p hide-xs>{{$ctrl.description}}</p>
+  <div ng-show="$ctrl.error">
+    <h4 class="error">{{$ctrl.error}}</h4>
+  </div>
+  <div
+    ng-show="$ctrl.beliefs"
+    layout="row"
+    layout-wrap
+    layout-align="center"
+    class="pb-15"
+  >
     <belief-card
       ng-repeat="belief in $ctrl.beliefs"
       belief="belief"
       flex="95"
       flex-lg="50"
       flex-xl="33"
-      class="mx-0"
+      class="mx-10"
     ></belief-card>
   </div>
 </div>
