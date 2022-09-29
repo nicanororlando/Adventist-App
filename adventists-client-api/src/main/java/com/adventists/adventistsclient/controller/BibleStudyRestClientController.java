@@ -52,7 +52,7 @@ public class BibleStudyRestClientController {
       .body(bibleStudyRestClientService.addNewBibleStudy(bibleStudy));
   }
 
-  @PatchMapping
+  @PatchMapping("/{id}")
   public ResponseEntity<Mono<BibleStudy>> updateBeliefById(
     @PathVariable Integer id,
     @RequestBody BibleStudy bibleStudy

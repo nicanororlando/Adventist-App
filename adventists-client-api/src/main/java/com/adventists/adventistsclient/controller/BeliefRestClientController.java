@@ -31,7 +31,17 @@ public class BeliefRestClientController {
       .body(beliefRestClientService.retrieveAllBeliefs());
   }
 
-  @GetMapping("/{slug}")
+  @GetMapping("/id/{id}")
+  public ResponseEntity<Mono<Belief>> retrieveBeliefBySlug(
+    @PathVariable Integer id
+  ) {
+    return ResponseEntity
+      .ok()
+      .contentType(MediaType.APPLICATION_JSON)
+      .body(beliefRestClientService.retrieveBeliefById(id));
+  }
+
+  @GetMapping("/slug/{slug}")
   public ResponseEntity<Mono<Belief>> retrieveBeliefBySlug(
     @PathVariable String slug
   ) {
@@ -49,7 +59,7 @@ public class BeliefRestClientController {
       .body(beliefRestClientService.addNewBelief(belief));
   }
 
-  @PatchMapping
+  @PatchMapping("/{id}")
   public ResponseEntity<Mono<Belief>> updateBeliefById(
     @PathVariable Integer id,
     @RequestBody Belief belief

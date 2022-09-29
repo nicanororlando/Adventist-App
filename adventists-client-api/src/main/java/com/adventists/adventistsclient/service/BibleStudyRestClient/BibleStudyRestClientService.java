@@ -71,7 +71,7 @@ public class BibleStudyRestClientService
       .bodyToMono(BibleStudy.class);
   }
 
-  // Patch
+  // PATCH
   // http://localhost:8080/api/bible-studies/id/{id}
   @Override
   public Mono<BibleStudy> updateBibleStudyById(
@@ -141,4 +141,3 @@ public class BibleStudyRestClientService
     private String message;
   }
 }
-        

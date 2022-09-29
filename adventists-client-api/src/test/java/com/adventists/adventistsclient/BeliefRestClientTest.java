@@ -10,6 +10,7 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import com.adventists.adventistsclient.DataTest.BeliefDataTest;
 import com.adventists.adventistsclient.constants.AdventistRestClientConstants;
 import com.adventists.adventistsclient.model.Belief.Belief;
 import org.assertj.core.api.Assertions;
@@ -107,7 +108,7 @@ public class BeliefRestClientTest {
   }
 
   @Test
-  @Order(2)
+  @Order(3)
   void testRetrieveBeliefById_NOT_FOUND() {
     webTestClient
       .get()
@@ -123,9 +124,9 @@ public class BeliefRestClientTest {
   }
 
   @Test
-  @Order(3)
+  @Order(4)
   void testAddNewBelief() {
-    Belief belief = DataTest.createBelief111().get();
+    Belief belief = BeliefDataTest.createBelief111().get();
     webTestClient
       .post()
       .uri(baseUrl + AdventistRestClientConstants.POST_BELIEF)
@@ -145,7 +146,7 @@ public class BeliefRestClientTest {
   }
 
   @Test
-  @Order(4)
+  @Order(5)
   void testRetrieveBeliefByIdCreated() {
     webTestClient
       .get()
@@ -161,9 +162,9 @@ public class BeliefRestClientTest {
   }
 
   @Test
-  @Order(5)
+  @Order(6)
   void testPatchBelief() {
-    Belief belief = DataTest.createBelief111().get();
+    Belief belief = BeliefDataTest.createBelief111().get();
     belief.setTitle("Title has been changed");
     webTestClient
       .patch()
@@ -185,7 +186,7 @@ public class BeliefRestClientTest {
   }
 
   @Test
-  @Order(6)
+  @Order(7)
   void testRetrieveBeliefByIdPatched() {
     webTestClient
       .get()
@@ -201,7 +202,7 @@ public class BeliefRestClientTest {
   }
 
   @Test
-  @Order(7)
+  @Order(8)
   void testDeleteBeliefById() {
     webTestClient
       .delete()
