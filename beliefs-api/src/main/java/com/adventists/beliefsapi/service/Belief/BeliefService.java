@@ -4,9 +4,9 @@ import com.adventists.beliefsapi.controller.BeliefController;
 import com.adventists.beliefsapi.exceptions.Exceptions;
 import com.adventists.beliefsapi.model.Belief.Belief;
 import com.adventists.beliefsapi.repository.IBeliefRepository;
+import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
@@ -22,7 +22,9 @@ import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBui
 @Service
 public class BeliefService implements IBeliefService {
 
-  private final Path rootFolder = Paths.get("uploads");
+  private final Path rootFolder = Path.of(
+    "H:/Proyectos/Adventist-App/beliefs-api/uploads"
+  );
 
   @Autowired
   private IBeliefRepository beliefRepository;
@@ -50,6 +52,10 @@ public class BeliefService implements IBeliefService {
     Belief belief = optionalBelief.get();
 
     if (optionalBelief.isPresent()) {
+      String previousImage = belief
+        .getImage()
+        .replace("http://localhost:8080/api/beliefs/file/", "");
+
       String newImage =
         UUID.randomUUID().toString() +
         "-" +
@@ -60,11 +66,7 @@ public class BeliefService implements IBeliefService {
           .replace("//", "");
 
       // Elimino el archivo anterior (Si habia uno):
-      if (belief.getImage() != null) {
-        String previousImage = belief
-          .getImage()
-          .replace("http://localhost:8080/api/beliefs/file/", "");
-
+      if (Files.exists(rootFolder.resolve(previousImage))) {
         System.out.println("This file will be deleted: ");
         System.out.println(previousImage);
         System.out.println("And replaced by: ");
@@ -73,13 +75,20 @@ public class BeliefService implements IBeliefService {
         Files.delete(this.rootFolder.resolve(previousImage));
       }
 
+      System.out.println(
+        "ROOT FOLDEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEER:"
+      );
+      System.out.println(rootFolder);
+
       // Guardo local:
-      Files.copy(file.getInputStream(), this.rootFolder.resolve(newImage));
+      Files.copy(file.getInputStream(), rootFolder.resolve(newImage));
 
       String url = MvcUriComponentsBuilder
         .fromMethodName(BeliefController.class, "getImage", newImage)
         .build()
         .toString();
+
+      System.out.println(url);
 
       // Guardo en la db:
       belief.setImage(url);
@@ -146,9 +155,22 @@ public class BeliefService implements IBeliefService {
   }
 
   @Override
-  public Resource uri(String name) throws Exception {
-    Path file = rootFolder.resolve(name);
-    Resource resource = new UrlResource(file.toUri());
-    return resource;
+  public Resource uri(String filename) throws Exception {
+    try {
+      Path file = rootFolder.resolve(filename);
+      Resource resource = new UrlResource(file.toUri());
+      int i = 0;
+      while (!resource.exists() || !resource.isReadable()) {
+        Thread.sleep(100);
+        if (++i == 20) {
+          break;
+        }
+      }
+      return resource;
+    } catch (MalformedURLException e) {
+      throw new RuntimeException("Error: " + e.getMessage());
+    } catch (InterruptedException e) {
+      throw new RuntimeException("Could not read the file!");
+    }
   }
 }

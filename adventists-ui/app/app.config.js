@@ -21,11 +21,11 @@ angular.module("app").config([
       .when("/about-us", {
         template: "<about-us></about-us>",
       })
-      // .otherwise({
-      //   template: "<beliefs></beliefs>",
-      // });
       .otherwise({
-        template: "<study-bible></study-bible>",
+        template: "<beliefs></beliefs>",
       });
+    // .otherwise({
+    //   template: "<study-bible></study-bible>",
+    // });
   },
 ]);

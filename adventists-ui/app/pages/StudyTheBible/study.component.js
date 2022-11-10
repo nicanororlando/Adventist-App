@@ -18,7 +18,7 @@ angular.module("studyBible").component("studyBible", {
 
     this.msg = { message: "", success: false };
 
-    $http.get(env.ADVENTISTS_API_BASE_URL + "/bible-studies").then(
+    $http.get(env.API_URL_STUDY_BIBLE).then(
       (res) => {
         this.bibleStudies = res.data;
       },
