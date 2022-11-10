@@ -1,4 +1,4 @@
-package com.adventists.adventistsclient.DataTest;
+package com.adventists.adventistsclient.BeliefClientTest;
 
 import com.adventists.adventistsclient.model.Belief.Belief;
 import com.adventists.adventistsclient.model.Belief.BeliefDetails;

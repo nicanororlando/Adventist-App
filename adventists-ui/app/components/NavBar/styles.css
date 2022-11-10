@@ -25,6 +25,9 @@ md-nav-bar .md-button._md-nav-button.md-unselected {
   font-size: 15px;
   font-weight: 400;
 }
+.md-button:not([disabled]).md-focused {
+  background-color: inherit;
+}
 .svg-logo {
   display: inline;
   width: 40px;

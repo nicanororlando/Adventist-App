@@ -17,6 +17,18 @@ public class BibleStudyDataTest {
     );
   }
 
+  public static Optional<BibleStudy> createBibleStudy222() {
+    return Optional.of(
+      new BibleStudy(
+        222,
+        "bible-study-222",
+        "Bible Study 222",
+        "image-222",
+        "https://imagenbiblestudy222.com"
+      )
+    );
+  }
+
   public static Optional<BibleStudy> createInvalidBibleStudy() {
     return Optional.of(
       new BibleStudy(

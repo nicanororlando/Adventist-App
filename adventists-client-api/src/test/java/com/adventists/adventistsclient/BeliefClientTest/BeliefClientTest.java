@@ -1,80 +1,27 @@
-package com.adventists.adventistsclient;
+package com.adventists.adventistsclient.BeliefClientTest;
 
-// JUnit y Mockito.
-import static org.hamcrest.Matchers.*;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-// import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
-import com.adventists.adventistsclient.DataTest.BeliefDataTest;
 import com.adventists.adventistsclient.constants.AdventistRestClientConstants;
 import com.adventists.adventistsclient.model.Belief.Belief;
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
-import org.mockito.ArgumentMatchers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.reactive.server.WebTestClient;
-import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class BeliefRestClientTest {
+public class BeliefClientTest {
 
   private static final String baseUrl =
     AdventistRestClientConstants.API_BELIEFS_BASE_URL;
 
   @Autowired
   private WebTestClient webTestClient;
-
-  // private WebClient.RequestBodyUriSpec requestBodyUriSpec;
-  // private WebClient.RequestHeadersUriSpec requestHeadersUriSpec;
-  // private WebClient.RequestHeadersSpec requestHeadersSpec;
-  // private WebClient.RequestBodySpec requestBodySpec;
-  // private WebClient.ResponseSpec responseSpec;
-  // private WebClient webClientMock;
-
-  // @BeforeEach
-  // void mockWebClient() {
-  //   requestBodyUriSpec = mock(WebClient.RequestBodyUriSpec.class);
-  //   requestHeadersUriSpec = mock(WebClient.RequestHeadersUriSpec.class);
-  //   requestHeadersSpec = mock(WebClient.RequestHeadersSpec.class);
-  //   requestBodySpec = mock(WebClient.RequestBodySpec.class);
-  //   responseSpec = mock(WebClient.ResponseSpec.class);
-  //   webClientMock = mock(WebClient.class);
-  // }
-
-  // @Test
-  // void testRetrieveAllBeliefs1() {
-  //   when(webClientMock.get()).thenReturn(requestHeadersUriSpec);
-  //   when(requestHeadersUriSpec.uri(ArgumentMatchers.<String>notNull()))
-  //     .thenReturn(requestHeadersSpec);
-  //   when(requestHeadersSpec.retrieve()).thenReturn(responseSpec);
-  //   when(responseSpec.bodyToMono(ArgumentMatchers.<Class<String>>notNull()))
-  //     .thenReturn(Mono.just("resp"));
-  // }
-
-  // @Test
-  // void testAddNewBelief1() {
-  //   when(webClientMock.post()).thenReturn(requestBodyUriSpec);
-  //   when(requestBodyUriSpec.uri(ArgumentMatchers.<String>notNull()))
-  //     .thenReturn(requestBodySpec);
-  //   when(requestBodySpec.accept(any())).thenReturn(requestBodySpec);
-  //   when(requestBodySpec.body(any())).thenReturn(requestHeadersSpec);
-  //   when(requestHeadersSpec.retrieve()).thenReturn(responseSpec);
-  //   when(responseSpec.bodyToMono(ArgumentMatchers.<Class<String>>notNull()))
-  //     .thenReturn(Mono.just("resp"));
-  // }
 
   @Test
   @Order(1)
@@ -212,3 +159,38 @@ public class BeliefRestClientTest {
       .isOk();
   }
 }
+// private WebClient.RequestBodyUriSpec requestBodyUriSpec;
+// private WebClient.RequestHeadersUriSpec requestHeadersUriSpec;
+// private WebClient.RequestHeadersSpec requestHeadersSpec;
+// private WebClient.RequestBodySpec requestBodySpec;
+// private WebClient.ResponseSpec responseSpec;
+// private WebClient webClientMock;
+// @BeforeEach
+// void mockWebClient() {
+//   requestBodyUriSpec = mock(WebClient.RequestBodyUriSpec.class);
+//   requestHeadersUriSpec = mock(WebClient.RequestHeadersUriSpec.class);
+//   requestHeadersSpec = mock(WebClient.RequestHeadersSpec.class);
+//   requestBodySpec = mock(WebClient.RequestBodySpec.class);
+//   responseSpec = mock(WebClient.ResponseSpec.class);
+//   webClientMock = mock(WebClient.class);
+// }
+// @Test
+// void testRetrieveAllBeliefs1() {
+//   when(webClientMock.get()).thenReturn(requestHeadersUriSpec);
+//   when(requestHeadersUriSpec.uri(ArgumentMatchers.<String>notNull()))
+//     .thenReturn(requestHeadersSpec);
+//   when(requestHeadersSpec.retrieve()).thenReturn(responseSpec);
+//   when(responseSpec.bodyToMono(ArgumentMatchers.<Class<String>>notNull()))
+//     .thenReturn(Mono.just("resp"));
+// }
+// @Test
+// void testAddNewBelief1() {
+//   when(webClientMock.post()).thenReturn(requestBodyUriSpec);
+//   when(requestBodyUriSpec.uri(ArgumentMatchers.<String>notNull()))
+//     .thenReturn(requestBodySpec);
+//   when(requestBodySpec.accept(any())).thenReturn(requestBodySpec);
+//   when(requestBodySpec.body(any())).thenReturn(requestHeadersSpec);
+//   when(requestHeadersSpec.retrieve()).thenReturn(responseSpec);
+//   when(responseSpec.bodyToMono(ArgumentMatchers.<Class<String>>notNull()))
+//     .thenReturn(Mono.just("resp"));
+// }

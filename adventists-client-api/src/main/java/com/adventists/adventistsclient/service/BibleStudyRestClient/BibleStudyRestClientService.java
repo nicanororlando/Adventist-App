@@ -80,7 +80,7 @@ public class BibleStudyRestClientService
   ) {
     return webClient
       .patch()
-      .uri(AdventistRestClientConstants.PATCH_BIBLE_STUDY_BY_SLUG, id)
+      .uri(AdventistRestClientConstants.PATCH_BIBLE_STUDY_BY_ID, id)
       .bodyValue(bibleStudy)
       .retrieve()
       .bodyToMono(BibleStudy.class);

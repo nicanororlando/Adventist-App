@@ -1,4 +1,4 @@
-package com.adventists.adventistsclient.DataTest;
+package com.adventists.adventistsclient.UserInfoClientTest;
 
 import com.adventists.adventistsclient.model.UserInfo;
 import java.util.Optional;

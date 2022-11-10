@@ -19,7 +19,7 @@ public class AdventistRestClientConstants {
   public static final String GET_ALL_BIBLE_STUDIES = "";
   public static final String POST_BIBLE_STUDY = "";
   public static final String GET_BIBLE_STUDY_BY_ID = "/{id}";
-  public static final String PATCH_BIBLE_STUDY_BY_SLUG = "/{id}";
+  public static final String PATCH_BIBLE_STUDY_BY_ID = "/{id}";
   public static final String DELETE_BIBLE_STUDY_BY_ID = "/{id}";
   public static final String GET_ALL_USERS_INFO = "/users";
   public static final String POST_USER_INFO = "/users";

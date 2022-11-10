@@ -1,4 +1,4 @@
-package com.adventists.adventistsclient.DataTest;
+package com.adventists.adventistsclient.BibleStudyClientTest;
 
 import com.adventists.adventistsclient.model.BibleStudy;
 import java.util.Optional;

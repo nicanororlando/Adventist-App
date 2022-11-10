@@ -3,7 +3,7 @@
 // Register `beliefs` component, along with its associated controller and template
 angular.module("studyBible").component("studyBible", {
   templateUrl: "./pages/StudyTheBible/study.template.html",
-  controller: function StudyTheBibleController($http) {
+  controller: function StudyTheBibleController(env, $http) {
     var self = this;
 
     this.title =
@@ -18,7 +18,7 @@ angular.module("studyBible").component("studyBible", {
 
     this.msg = { message: "", success: false };
 
-    $http.get("http://localhost:8888/bible-studies").then(
+    $http.get(env.ADVENTISTS_API_BASE_URL + "/bible-studies").then(
       (res) => {
         this.bibleStudies = res.data;
       },
