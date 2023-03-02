@@ -1,8 +1,28 @@
-<img-text-header title="$ctrl.title"></img-text-header>
+<img-text-header
+  hide-xs
+  title="$ctrl.title"
+  class="md-content-scrol"
+></img-text-header>
 
-<div layout-padding flex="66" flex-sm="85" flex-xs="95" class="m-auto my-15">
-  <p>{{$ctrl.description}}</p>
-  <div layout="row" layout-wrap layout-align="space-between" class="pb-15">
+<md-content
+  layout-padding
+  flex="66"
+  flex-sm="85"
+  flex-xs="95"
+  class="m-auto my-15"
+  md-scroll-y
+>
+  <p hide-xs>{{$ctrl.description}}</p>
+  <div ng-show="$ctrl.error">
+    <h4 class="error">{{$ctrl.error}}</h4>
+  </div>
+  <div
+    ng-show="$ctrl.bibleStudies"
+    layout="row"
+    layout-wrap
+    layout-align="center"
+    class="pb-15"
+  >
     <itdl-card
       ng-repeat="bibleStudy in $ctrl.bibleStudies"
       data="bibleStudy"
@@ -15,11 +35,7 @@
   <div class="div"></div>
 
   <h2 class="mt-30">Would you like to study with us?</h2>
-  <form
-    ng-submit="$ctrl.submitInfoUserStudy()"
-    name="studiesForm"
-    class="mb-15"
-  >
+  <form ng-submit="$ctrl.submitInfoUserForm()" name="studiesForm" class="mb-15">
     <div layout="row">
       <md-input-container flex="50">
         <label>Name</label>
@@ -104,6 +120,12 @@
       <md-button class="md-raised md-primary mx-0" type="submit">
         Submit
       </md-button>
+      <p
+        class="my-0"
+        ng-class="{'success': $ctrl.msg.success, 'error': !$ctrl.msg.success}"
+      >
+        {{$ctrl.msg.message}}
+      </p>
     </div>
   </form>
-</div>
+</md-content>

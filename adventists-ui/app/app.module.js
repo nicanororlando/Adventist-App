@@ -14,6 +14,7 @@ angular
     "studyBible",
     "appFooter",
     "beliefCard",
+    "buttonScrollTop",
     "fabSpeedDial",
     "imgTextHeader",
     "itdlCard",

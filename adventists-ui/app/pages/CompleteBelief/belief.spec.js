@@ -1,8 +1,6 @@
 "use strict";
 
 describe("completeBelief module", function () {
-  beforeEach(module("completeBelief"));
-
   describe("CompleteBeliefController", function () {
     var beliefTestData = {
       id: 1,
@@ -20,14 +18,24 @@ describe("completeBelief module", function () {
       ],
     };
 
+    var env;
+
+    beforeEach(module("completeBelief"));
     beforeEach(inject(function (
+      // $injector,
+      // _env_,
       $componentController,
       _$httpBackend_,
       $routeParams
     ) {
+      // env = $injector.get("env");
+      // env = _env_;
       this.$httpBackend = _$httpBackend_;
       this.$httpBackend
-        .expectGET("http://localhost:8080/api/beliefs/test-belief")
+        .expectGET(
+          // env.ADVENTISTS_API_BASE_URL +
+          "http://localhost:8888/beliefs/slug/test-belief"
+        )
         .respond(beliefTestData);
 
       $routeParams.beliefSlug = "test-belief";
@@ -39,7 +47,7 @@ describe("completeBelief module", function () {
       expect(this.ctrl).toBeDefined();
     }));
 
-    it("should fetch the complete belief", () => {
+    it("should fetch the complete belief", function () {
       jasmine.addCustomEqualityTester(angular.equals);
 
       expect(this.ctrl.belief).toEqual();

@@ -20,44 +20,40 @@
     <link rel="stylesheet" href="./components/ITDLCard/styles.css" />
     <link rel="stylesheet" href="./components/MenuButton/styles.css" />
     <link rel="stylesheet" href="./components/NavBar/styles.css" />
+    <link rel="stylesheet" href="./components/ButtonScrollTop/styles.css" />
     <link rel="stylesheet" href="./components/TopBar/styles.css" />
     <link rel="stylesheet" href="./directives/Loading/styles.css" />
 
     <link rel="stylesheet" href="lib/angular-material/angular-material.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
       rel="stylesheet"
     />
-    <script
-      src="https://kit.fontawesome.com/6c59ad322c.js"
-      crossorigin="anonymous"
-    ></script>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
     />
+    <script
+      src="https://kit.fontawesome.com/6c59ad322c.js"
+      crossorigin="anonymous"
+    ></script>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"
       integrity="sha512-WFN04846sdKMIP5LKNphMaWzU7YpMyCU245etK3g/2ARYbPK9Ub18eG+ljU96qKRCWh+quCY7yefSmlkQw1ANQ=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   </head>
   <body>
     <top-bar></top-bar>
     <nav-bar></nav-bar>
     <loading></loading>
     <main ng-view></main>
+    <button-scroll-top></button-scroll-top>
     <app-footer></app-footer>
-
-    <!-- Falta agregar/mejorar: -->
-    <!-- 1. BeliefCard: ng-if / hacerlo mas general / @Media queries. -->
-    <!-- 2. Recibir datos a travez de un servicio. -->
-    <!-- 3. Hojas de Estilos: Enrutamiento. -->
-    <!-- 4. Tests -->
 
     <scripts>
       <script src="lib/angular/angular.js"></script>
@@ -70,6 +66,7 @@
       <script src="lib/angular-loader/angular-loader.js"></script>
       <script src="app.module.js"></script>
       <script src="app.config.js"></script>
+      <script src="app.variables.js"></script>
       <script src="pages/AboutUs/aboutUs.module.js"></script>
       <script src="pages/AboutUs/aboutUs.component.js"></script>
       <script src="pages/Beliefs/beliefs.module.js"></script>
@@ -85,6 +82,7 @@
       <script src="components/ITDLCard/scripts.js"></script>
       <script src="components/MenuButton/scripts.js"></script>
       <script src="components/NavBar/scripts.js"></script>
+      <script src="components/ButtonScrollTop/scripts.js"></script>
       <script src="components/TopBar/scripts.js"></script>
       <script src="directives/Loading/app.directive.js"></script>
       <script src="core/core.module.js"></script>

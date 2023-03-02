@@ -18,6 +18,10 @@ public class Exceptions extends Exception {
     return model + " with given slug already exists";
   }
 
+  public static String EmailAlreadyExists() {
+    return "The email has already been used for this request";
+  }
+
   public static String IdAlreadyExists(String model) {
     return model + " with given id already exists";
   }

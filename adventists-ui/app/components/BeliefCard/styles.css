@@ -7,7 +7,6 @@
   padding: 10px 15px;
   margin: 0;
 }
-
 .description {
   background: #fff;
   font-style: italic;
@@ -36,6 +35,27 @@
   padding: 10px;
   float: right;
   box-shadow: inset 10px 10px 50px #fff;
+}
+
+.belief-item-xs {
+  width: 90%;
+  padding: 0 20px;
+  background-color: rgb(186, 229, 255);
+  border-radius: 30px;
+  text-align: left;
+  font-weight: bold !important;
+  cursor: pointer;
+  color: #666;
+}
+
+.belief-item-xs > h1,
+.belief-item-xs > h3 {
+  font-weight: 800;
+}
+
+.arrow-right {
+  height: 30px;
+  color: white !important;
 }
 
 @media screen and (min-width: 2800px) {

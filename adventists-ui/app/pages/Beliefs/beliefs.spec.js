@@ -6,14 +6,24 @@ describe("beliefs", function () {
   describe("BeliefsController", function () {
     /* Usamos el inject para injectar las instancias del component controller y 
     httpBackend services en la funcion beforeEach de Jasmine. */
-    beforeEach(inject(function ($componentController, _$httpBackend_) {
-      this.$httpBackend = _$httpBackend_;
-      this.$httpBackend.expectGET("http://localhost:8080/api/beliefs").respond([
-        { id: 1, title: "belief-1, description: ['p1.1', 'p1.2']" },
-        { id: 2, title: "belief-2, description: ['p2.1', 'p2.2']" },
-      ]);
-
+    beforeEach(inject(function (
+      $componentController,
+      // $injector,
+      _$httpBackend_
+    ) {
       this.ctrl = $componentController("beliefs");
+      // this.globalVariables = $injector.get("GlobalVariables");
+
+      this.$httpBackend = _$httpBackend_;
+      this.$httpBackend
+        .expectGET(
+          // this.globalVariables.ADVENTISTS_API_BASE_URL +
+          "http://localhost:8888/beliefs"
+        )
+        .respond([
+          { id: 1, title: "belief-1, description: ['p1.1', 'p1.2']" },
+          { id: 2, title: "belief-2, description: ['p2.1', 'p2.2']" },
+        ]);
     }));
 
     it("should define component controller.", inject(function () {
