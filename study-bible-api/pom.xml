@@ -11,7 +11,7 @@
 	<groupId>com.adventists</groupId>
 	<artifactId>biblestudies</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>adventist</name>
+	<name>biblestudies</name>
 	<description>Bible studies API</description>
 	<properties>
 		<java.version>18</java.version>

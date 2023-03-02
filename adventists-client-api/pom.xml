@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.adventists</groupId>
-	<artifactId>adventists-client</artifactId>
+	<artifactId>adventistsclient</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>adventist-client</name>
+	<name>adventistsclient</name>
 	<description>Adventists client API</description>
 	<properties>
 		<java.version>18</java.version>
